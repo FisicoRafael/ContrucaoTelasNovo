@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:omni_chat_telas/components/MyAppBarCustom.dart';
 import 'package:omni_chat_telas/components/nomes_botoes_textos.dart';
@@ -10,6 +8,9 @@ class RamalScren extends StatefulWidget {
   @override
   _RamalScrenState createState() => _RamalScrenState();
 }
+
+double larguraTelaGlobal;
+double alturaTelaGlobal;
 
 class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
   TabController _tabController;
@@ -92,20 +93,32 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    double alturaTela = MediaQuery.of(context).size.height;
+    double larguraTela = MediaQuery.of(context).size.width;
+    double proporcaoAlturaAppBar = MyAppBarCuston("list").proporcaoAltura;
+    double proporcaoAlturaBody = 1.00 - proporcaoAlturaAppBar;
+    larguraTelaGlobal = larguraTela;
+    alturaTelaGlobal = alturaTela;
+
+    double proporcaoComponenteFundo = 0.93;
+    double distanciaToolBar = alturaTela*0.05;
+
+    double alturaFundo =
+        alturaTela * proporcaoAlturaBody * proporcaoComponenteFundo;
+    double alturaComponetBaixo = alturaTela * proporcaoAlturaBody * (1-proporcaoComponenteFundo);
+
     return Scaffold(
       appBar: MyAppBarCuston("chat"),
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height-120,
-          width: MediaQuery.of(context).size.width,
+          height: alturaTela * proporcaoAlturaBody,
+          width: larguraTela,
+          color: Colors.grey,
           child: Column(
             children: [
-              Expanded(
-                  child: Stack(
+
+              Stack(
                 children: [
-                  Container(
-                    color: Colors.grey,
-                  ),
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: ClipRRect(
@@ -113,7 +126,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                           topRight: Radius.circular(20),
                           topLeft: Radius.circular(20)),
                       child: Container(
-                        height: 480,
+                        height: alturaFundo,
                         color: Colors.white,
                         child: Column(
                           children: [
@@ -137,7 +150,8 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                             width: 180,
                                             height: 36,
                                             child: TextField(
-                                              style: TextStyle(color: Colors.black),
+                                              style: TextStyle(
+                                                  color: Colors.black),
                                               decoration: InputDecoration(
                                                   hintText: "Nome na Fila"),
                                             )),
@@ -164,7 +178,8 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                             width: 180,
                                             height: 36,
                                             child: TextField(
-                                              style: TextStyle(color: Colors.black),
+                                              style: TextStyle(
+                                                  color: Colors.black),
                                               decoration: InputDecoration(
                                                   hintText: "Nome do Agente"),
                                             )),
@@ -192,27 +207,31 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 3, right: 8),
+                                  padding:
+                                      const EdgeInsets.only(left: 3, right: 8),
                                   child: Container(
                                     height: 35,
                                     child: Row(
                                       children: [
                                         _buildButton("ESPERA", _onOffEspera),
                                         _buildButton("MUTE", _onOffMute),
-                                        _buildButton("CONSULTAR", _onOffConsultar)
+                                        _buildButton(
+                                            "CONSULTAR", _onOffConsultar)
                                       ],
                                     ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 3, right: 8),
+                                  padding:
+                                      const EdgeInsets.only(left: 3, right: 8),
                                   child: Container(
                                     height: 35,
                                     child: Row(
                                       children: [
                                         _buildButton(
                                             "TRANSFERIR", _onOffTransferir),
-                                        _buildButton("CANCELAR", _onOffCancelar),
+                                        _buildButton(
+                                            "CANCELAR", _onOffCancelar),
                                         _buildButton("CONF", _onOffConf)
                                       ],
                                     ),
@@ -235,26 +254,34 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                           height: 45,
                                           color: Colors.grey,
                                           child: TabBar(
-                                              unselectedLabelColor: Colors.white,
+                                              unselectedLabelColor:
+                                                  Colors.white,
                                               controller: _tabController,
                                               indicator: BoxDecoration(
-                                                  borderRadius: BorderRadius.only(
-                                                      topRight: Radius.circular(20),
-                                                      topLeft: Radius.circular(20)),
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  20),
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  20)),
                                                   color: Colors.orange),
                                               labelColor: Colors.white,
                                               tabs: [
                                                 Tab(
                                                   child: Padding(
-                                                    padding: const EdgeInsets.only(
-                                                        left: 10),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 10),
                                                     child: Text("HOME"),
                                                   ),
                                                 ),
                                                 Tab(
                                                   child: Padding(
-                                                    padding: const EdgeInsets.only(
-                                                        left: 10),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 10),
                                                     child: Text("HISTÓRICO"),
                                                   ),
                                                 ),
@@ -283,7 +310,8 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                             )),
                             Row(
                               children: [
-                                _buildButton("DESREGISTRAR", _onOffDesRegistrar),
+                                _buildButton(
+                                    "DESREGISTRAR", _onOffDesRegistrar),
                                 _buildButton("LOGIN", _onOffLogin),
                                 _buildButton("PAUSA", _onOffPausa),
                               ],
@@ -296,7 +324,8 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                   Align(
                     alignment: Alignment.topCenter,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 20),
                       child: ClipRRect(
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(20),
@@ -307,7 +336,8 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                             child: Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 6, left: 16),
+                                  padding:
+                                      const EdgeInsets.only(top: 6, left: 16),
                                   child: Column(
                                     children: [
                                       ClipRRect(
@@ -352,10 +382,10 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                     ),
                   ),
                 ],
-              )),
+              ),
               Container(
                 color: Colors.blue[200],
-                height: 40,
+                height: alturaComponetBaixo,
                 child: Row(
                   children: <Widget>[
                     Padding(

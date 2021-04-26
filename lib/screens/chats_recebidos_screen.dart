@@ -26,10 +26,17 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
 
   @override
   Widget build(BuildContext context) {
+    double alturaTela = MediaQuery.of(context).size.height;
+    double larguraTela = MediaQuery.of(context).size.width;
+    double proporcaoAlturaAppBar = MyAppBarCuston("list").proporcaoAltura;
+    double proporcaoAlturaBody = 1.00 - proporcaoAlturaAppBar;
+
     context_aux = context;
     return Scaffold(
       appBar: MyAppBarCuston("listaChat"),
       body: Container(
+        height: alturaTela*proporcaoAlturaBody,
+        width: larguraTela,
         color: Colors.greenAccent,
         child: Column(
           children: <Widget>[
@@ -176,7 +183,10 @@ List<ListTile> lista_aux = [
           Icons.check,
           color: Colors.black,
         ),
-        Text("Texto checado", style: TextStyle(color: Colors.black),)
+        Text(
+          "Texto checado",
+          style: TextStyle(color: Colors.black),
+        )
       ],
     ),
     leading: FotoUsuario(Icons.person),
@@ -203,7 +213,7 @@ List<ListTile> lista_aux = [
           Icons.check,
           color: Colors.black,
         ),
-        Text("Texto checado",style: TextStyle(color: Colors.black))
+        Text("Texto checado", style: TextStyle(color: Colors.black))
       ],
     ),
     leading: FotoUsuario(Icons.person),

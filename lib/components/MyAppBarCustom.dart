@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 import 'FotoUsuario.dart';
@@ -12,16 +10,26 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
     Key key,
   }) : super(key: key);
 
+  double proporcaoAltura = 0.16;
+
   @override
   Widget build(BuildContext context) {
+    double alturaTela = MediaQuery.of(context).size.height;
+    double larguraTela = MediaQuery.of(context).size.width;
+
     if (tipo == "listaChat") {
       return Container(
+        height: alturaTela * proporcaoAltura,
+        width: larguraTela,
         color: Color(0xFFbdbdbd),
         child: Column(
           children: <Widget>[
-            Image.asset('images/logo-lhtec.png'),
             Padding(
-              padding: const EdgeInsets.only(top: 10, left: 10),
+              padding: const EdgeInsets.only(top: 8),
+              child: Image.asset('images/logo-lhtec.png'),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8, left: 5),
               child: Row(
                 children: [
                   IconButton(
@@ -53,12 +61,17 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
       );
     } else {
       return Container(
+        height: alturaTela * proporcaoAltura,
+        width: larguraTela,
         color: Color(0xFFbdbdbd),
         child: Column(
           children: <Widget>[
-            Image.asset('images/logo-lhtec.png'),
             Padding(
-              padding: const EdgeInsets.only(top: 10, left: 10),
+              padding: const EdgeInsets.only(top: 8),
+              child: Image.asset('images/logo-lhtec.png'),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8, left: 5),
               child: Row(
                 children: [
                   IconButton(

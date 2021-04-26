@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:omni_chat_telas/components/FotoUsuario.dart';
 import 'package:omni_chat_telas/components/MyAppBarCustom.dart';
@@ -14,14 +12,25 @@ class ChatScreen extends StatefulWidget {
   static const String id = 'chat_screen';
 }
 
+double larguraTelaGlobal;
+double alturaTelaGlobal;
+
 class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
+    double alturaTela = MediaQuery.of(context).size.height;
+    double larguraTela = MediaQuery.of(context).size.width;
+    double proporcaoAlturaAppBar = MyAppBarCuston("list").proporcaoAltura;
+    double proporcaoAlturaBody = 1.00 - proporcaoAlturaAppBar;
+    larguraTelaGlobal = larguraTela;
+    alturaTelaGlobal = alturaTela;
+
     return Scaffold(
       appBar: MyAppBarCuston("chat"),
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height - 130,
+          height: alturaTela * proporcaoAlturaBody,
+          width: larguraTela,
           color: Color(0xFFbdbdbd),
           child: Column(
             //mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,7 +55,7 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
               Container(
                   color: Colors.white,
-                  height: 100,
+                  height: alturaTela*0.10,
                   child: Row(children: <Widget>[
                     Expanded(
                         child: TextField(
@@ -54,38 +63,29 @@ class _ChatScreenState extends State<ChatScreen> {
                             decoration: InputDecoration(
                               hintText: "Escreva uma mensagem",
                             ))),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 2, right: 2),
-                      child: IconButton(
-                        icon: Icon(Icons.tag_faces, color: Colors.orange, size: 30),
-                        onPressed: () {},
-                      ),
+                    IconButton(
+                      icon: Icon(Icons.tag_faces,
+                          color: Colors.orange, size: 30),
+                      onPressed: () {},
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 2, right: 2),
-                      child: IconButton(
-                        icon: Icon(Icons.attach_file, color: Colors.orange, size: 30),
-                        onPressed: () {},
-                      ),
+                    IconButton(
+                      icon: Icon(Icons.attach_file,
+                          color: Colors.orange, size: 30),
+                      onPressed: () {},
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 2, right: 2),
-                      child: IconButton(
-                        icon: Icon(Icons.subdirectory_arrow_left_rounded, color: Colors.orange, size: 30),
-                        onPressed: () {},
-                      ),
+                    IconButton(
+                      icon: Icon(Icons.subdirectory_arrow_left_rounded,
+                          color: Colors.orange, size: 30),
+                      onPressed: () {},
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 2, right: 2),
-                      child: IconButton(
-                        icon: Icon(Icons.mic, color: Colors.orange, size: 30),
-                        onPressed: () {},
-                      ),
+                    IconButton(
+                      icon: Icon(Icons.mic, color: Colors.orange, size: 30),
+                      onPressed: () {},
                     ),
                   ])),
               Container(
                 color: Colors.blue[200],
-                height: 40,
+                height: alturaTela*0.05,
                 child: Row(
                   children: <Widget>[
                     Padding(
@@ -201,16 +201,19 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget _caixaUsuario() {
     return ClipRRect(
       child: Container(
-        height: 80,
+        height: alturaTelaGlobal * 0.1,
+        width: larguraTelaGlobal,
         decoration: BoxDecoration(
             color: Colors.blue[200],
             borderRadius:
                 BorderRadius.only(topRight: const Radius.circular(40))),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 10),
+        child: Expanded(
           child: Row(
             children: <Widget>[
-              FotoUsuario(Icons.person),
+              Padding(
+                padding: const EdgeInsets.only(left: 8),
+                child: FotoUsuario(Icons.person),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 10, left: 10),
                 child: Column(
@@ -218,11 +221,18 @@ class _ChatScreenState extends State<ChatScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text("Atendimento na Fila: nome da Fila"),
-                    Text(
-                      "Nome do Contato está digitando...",
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
+                    Row(
+                      children: [
+                        Text(
+                          "Nome do Contato ",
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                        Text(
+                          " está digitando...",
+                        ),
+                      ],
                     ),
                     Text('Ticket: #09080787')
                   ],

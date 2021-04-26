@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:omni_chat_telas/components/MyAppBarCustom.dart';
 import 'package:omni_chat_telas/components/nomes_botoes_textos.dart';
@@ -70,12 +71,12 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
           },
           child: Text(name),
           style: ButtonStyle(
-              minimumSize: MaterialStateProperty.all<Size>(Size(10, 30)),
+              minimumSize: MaterialStateProperty.all<Size>(Size(30, 30)),
               backgroundColor: MaterialStateProperty.all<Color>(
                   Color(estado == -1 ? 0xFF9e9e9e : 0xFFffa726)),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
+                      borderRadius: BorderRadius.circular(15),
                       side: BorderSide(
                           color:
                               Color(estado == -1 ? 0xFF9e9e9e : 0xFFffa726))))),
@@ -101,11 +102,12 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
     alturaTelaGlobal = alturaTela;
 
     double proporcaoComponenteFundo = 0.93;
-    double distanciaToolBar = alturaTela*0.05;
+    double distanciaToolBar = alturaTela * 0.05;
 
     double alturaFundo =
         alturaTela * proporcaoAlturaBody * proporcaoComponenteFundo;
-    double alturaComponetBaixo = alturaTela * proporcaoAlturaBody * (1-proporcaoComponenteFundo);
+    double alturaComponetBaixo =
+        alturaTela * proporcaoAlturaBody * (1 - proporcaoComponenteFundo);
 
     return Scaffold(
       appBar: MyAppBarCuston("chat"),
@@ -114,11 +116,13 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
           height: alturaTela * proporcaoAlturaBody,
           width: larguraTela,
           color: Colors.grey,
-          child: Column(
+          child: Stack(
             children: [
-
-              Stack(
+              Column(
                 children: [
+                  Container(
+                    height: distanciaToolBar,
+                  ),
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: ClipRRect(
@@ -126,12 +130,12 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                           topRight: Radius.circular(20),
                           topLeft: Radius.circular(20)),
                       child: Container(
-                        height: alturaFundo,
+                        height: alturaFundo - distanciaToolBar,
                         color: Colors.white,
                         child: Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 29, left: 20),
+                              padding: const EdgeInsets.only(top: 29, left: 10),
                               child: Row(children: [
                                 Expanded(
                                   child: Column(
@@ -140,7 +144,8 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                         alignment: Alignment.centerLeft,
                                         child: Text(
                                           "Fila",
-                                          style: TextStyle(fontSize: 20),
+                                          style: TextStyle(
+                                              fontSize: 20, color: Colors.grey),
                                         ),
                                       ),
                                       Align(
@@ -150,8 +155,8 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                             width: 180,
                                             height: 36,
                                             child: TextField(
-                                              style: TextStyle(
-                                                  color: Colors.black),
+                                              style:
+                                                  TextStyle(color: Colors.grey),
                                               decoration: InputDecoration(
                                                   hintText: "Nome na Fila"),
                                             )),
@@ -167,8 +172,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                         child: Text(
                                           "Login",
                                           style: TextStyle(
-                                            fontSize: 20,
-                                          ),
+                                              fontSize: 20, color: Colors.grey),
                                         ),
                                       ),
                                       Align(
@@ -195,13 +199,13 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                   padding: const EdgeInsets.only(
                                       right: 8, left: 3, top: 8),
                                   child: Container(
-                                    height: 35,
+                                    height: alturaTela * 0.07,
                                     child: Row(
                                       children: [
-                                        _buildButton("ATENDER", _onOffAtender),
                                         _buildButton("LIGAR", _onOffLigar),
                                         _buildButton("DTMF", _onOffDTMF),
-                                        _buildButton("CAM", _onOffCam)
+                                        _buildButton("CAM", _onOffCam),
+                                        _buildButton("MUTE", _onOffMute),
                                       ],
                                     ),
                                   ),
@@ -210,11 +214,11 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                   padding:
                                       const EdgeInsets.only(left: 3, right: 8),
                                   child: Container(
-                                    height: 35,
+                                    height: alturaTela * 0.07,
                                     child: Row(
                                       children: [
+                                        _buildButton("ATENDER", _onOffAtender),
                                         _buildButton("ESPERA", _onOffEspera),
-                                        _buildButton("MUTE", _onOffMute),
                                         _buildButton(
                                             "CONSULTAR", _onOffConsultar)
                                       ],
@@ -225,7 +229,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                   padding:
                                       const EdgeInsets.only(left: 3, right: 8),
                                   child: Container(
-                                    height: 35,
+                                    height: alturaTela * 0.07,
                                     child: Row(
                                       children: [
                                         _buildButton(
@@ -240,73 +244,82 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                               ],
                             ),
                             Expanded(
-                                child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                    topRight: Radius.circular(20)),
-                                child: Container(
-                                  child: Stack(
-                                    children: [
-                                      Expanded(
-                                        child: Container(
-                                          height: 45,
-                                          color: Colors.grey,
-                                          child: TabBar(
-                                              unselectedLabelColor:
-                                                  Colors.white,
-                                              controller: _tabController,
-                                              indicator: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  20),
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  20)),
-                                                  color: Colors.orange),
-                                              labelColor: Colors.white,
-                                              tabs: [
-                                                Tab(
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Text("HOME"),
+                                child: Column(
+                              children: [
+                                Stack(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 8),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(20),
+                                            topLeft: Radius.circular(20)),
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Container(
+                                            height: alturaTela * 0.07,
+                                            width: larguraTela * 0.7,
+                                            color: Colors.grey,
+                                            child: TabBar(
+                                                unselectedLabelColor:
+                                                    Colors.white,
+                                                controller: _tabController,
+                                                indicator: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    20),
+                                                            topLeft: Radius
+                                                                .circular(20)),
+                                                    color: Colors.orange),
+                                                labelColor: Colors.white,
+                                                tabs: [
+                                                  Tab(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 10),
+                                                      child: Text("HOME"),
+                                                    ),
                                                   ),
-                                                ),
-                                                Tab(
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Text("HISTÓRICO"),
+                                                  Tab(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 10),
+                                                      child: Text("HISTÓRICO"),
+                                                    ),
                                                   ),
-                                                ),
-                                              ]),
+                                                ]),
+                                          ),
                                         ),
                                       ),
-                                      Align(
-                                        alignment: Alignment.bottomCenter,
-                                        child: Container(
-                                            height: 171,
-                                            decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 3)),
-                                            child: TabBarView(
-                                                controller: _tabController,
-                                                children: [
-                                                  Text("Home"),
-                                                  Text("Histórico")
-                                                ])),
-                                      )
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 8, right: 8),
+                                    child: Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 3)),
+                                        child: TabBarView(
+                                            controller: _tabController,
+                                            children: [
+                                              Text("Home",
+                                                  style: TextStyle(
+                                                      color: Colors.black)),
+                                              Text("Histórico",
+                                                  style: TextStyle(
+                                                      color: Colors.black))
+                                            ])),
+                                  ),
+                                )
+                              ],
                             )),
                             Row(
                               children: [
@@ -321,112 +334,117 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(top: 10, left: 20, right: 20),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              topLeft: Radius.circular(20)),
-                          child: Container(
-                            height: 60,
-                            color: Colors.blueGrey,
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 6, left: 16),
-                                  child: Column(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(40),
-                                        child: Container(
-                                          color: Colors.green,
-                                          height: 35,
-                                          width: 35,
-                                        ),
-                                      ),
-                                      Text(
-                                        "Ramal: 000",
-                                        style: TextStyle(color: Colors.white),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                    child: Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 8),
-                                      child: Text(
-                                        "0000",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 20),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 5),
-                                      child: Text(
-                                        "00:00:00",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 20),
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                              ],
+                  Container(
+                    color: Colors.blue[200],
+                    height: alturaComponetBaixo,
+                    child: Row(
+                      children: <Widget>[
+                        Padding(
+                            padding: EdgeInsets.only(left: 10, right: 10),
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.group_add,
+                                color: Colors.white,
+                                size: 30,
+                              ),
+                            )),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.people,
+                              color: Colors.white,
+                              size: 30,
                             ),
-                          )),
+                          ),
+                        ),
+                        Expanded(
+                            child: SizedBox(
+                          width: 50,
+                        )),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.call,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.pause,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                  ),
+                  )
                 ],
               ),
-              Container(
-                color: Colors.blue[200],
-                height: alturaComponetBaixo,
-                child: Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: Icon(
-                        Icons.group_add,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: Icon(
-                        Icons.people,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                    ),
-                    Expanded(
-                        child: SizedBox(
-                      width: 50,
-                    )),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: Icon(
-                        Icons.call,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: Icon(
-                        Icons.pause,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                    )
-                  ],
+              Align(
+                alignment: Alignment.topCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 4, left: 20, right: 20),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          topLeft: Radius.circular(20)),
+                      child: Container(
+                        height: 60,
+                        color: Colors.blueGrey,
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 6, left: 16),
+                              child: Column(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(40),
+                                    child: Container(
+                                      color: Colors.green,
+                                      height: 35,
+                                      width: 35,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Ramal: 000",
+                                    style: TextStyle(color: Colors.white),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                                child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8),
+                                  child: Text(
+                                    "0000",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 5),
+                                  child: Text(
+                                    "00:00:00",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                ),
+                              ],
+                            )),
+                          ],
+                        ),
+                      )),
                 ),
-              )
+              ),
             ],
           ),
         ),

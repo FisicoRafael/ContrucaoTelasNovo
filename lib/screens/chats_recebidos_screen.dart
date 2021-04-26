@@ -28,144 +28,153 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
   Widget build(BuildContext context) {
     double alturaTela = MediaQuery.of(context).size.height;
     double larguraTela = MediaQuery.of(context).size.width;
-    double proporcaoAlturaAppBar = MyAppBarCuston("list").proporcaoAltura;
+    double proporcaoAlturaAppBar = MyAppBarCuston("list",alturaTela).proporcaoAltura;
     double proporcaoAlturaBody = 1.00 - proporcaoAlturaAppBar;
+
+    double proporcaoComponenteFundo = 0.93;
+
+    double alturaFundo =
+        alturaTela * proporcaoAlturaBody * proporcaoComponenteFundo;
+    double alturaComponetBaixo =
+        alturaTela * proporcaoAlturaBody * (1 - proporcaoComponenteFundo);
 
     context_aux = context;
     return Scaffold(
-      appBar: MyAppBarCuston("listaChat"),
-      body: Container(
-        height: alturaTela*proporcaoAlturaBody,
-        width: larguraTela,
-        color: Colors.greenAccent,
-        child: Column(
-          children: <Widget>[
-            TabBar(
-                unselectedLabelColor: Colors.white,
-                controller: _tabController,
-                indicator: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.only(topRight: Radius.circular(20)),
-                    color: Colors.white),
-                labelColor: Colors.green,
-                tabs: [
-                  Tab(
-                    child: Row(
-                      children: [
-                        Icon(Icons.group_add),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Text("Em Atendimento"),
-                        )
-                      ],
+      appBar: MyAppBarCuston("listaChat",alturaTela),
+      body: SingleChildScrollView(
+        child: Container(
+          height: alturaTela*proporcaoAlturaBody,
+          width: larguraTela,
+          color: Colors.greenAccent,
+          child: Column(
+            children: <Widget>[
+              TabBar(
+                  unselectedLabelColor: Colors.white,
+                  controller: _tabController,
+                  indicator: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.only(topRight: Radius.circular(20)),
+                      color: Colors.white),
+                  labelColor: Colors.green,
+                  tabs: [
+                    Tab(
+                      child: Row(
+                        children: [
+                          Icon(Icons.group_add),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Text("Em Atendimento"),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  Tab(
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Icon(Icons.people),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Text("Internos"),
-                        )
-                      ],
+                    Tab(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Icon(Icons.people),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Text("Internos"),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ]),
-            Expanded(
-              child: Container(
-                color: Colors.white,
-                child: TabBarView(controller: _tabController, children: [
-                  Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8, right: 8),
-                        child: TextField(
-                          style: TextStyle(color: Colors.black),
-                          decoration: InputDecoration(
-                            fillColor: Colors.white,
-                            hintText: "Buscar Atendimento",
-                            hintStyle: TextStyle(color: Colors.grey),
-                            suffixIcon: Icon(
-                              Icons.search,
-                              color: Colors.grey,
+                  ]),
+              Expanded(
+                child: Container(
+                  color: Colors.white,
+                  child: TabBarView(controller: _tabController, children: [
+                    Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8, right: 8),
+                          child: TextField(
+                            style: TextStyle(color: Colors.black),
+                            decoration: InputDecoration(
+                              fillColor: Colors.white,
+                              hintText: "Buscar Atendimento",
+                              hintStyle: TextStyle(color: Colors.grey),
+                              suffixIcon: Icon(
+                                Icons.search,
+                                color: Colors.grey,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: lista_aux.length,
-                            itemBuilder: _listaChats),
-                      )
-                    ],
-                  ),
-                  Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8, right: 8),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            fillColor: Colors.white,
-                            hintText: "Buscar Contato",
-                            hintStyle: TextStyle(color: Colors.grey),
-                            suffixIcon: Icon(
-                              Icons.search,
-                              color: Colors.grey,
+                        Expanded(
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: lista_aux.length,
+                              itemBuilder: _listaChats),
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8, right: 8),
+                          child: TextField(
+                            decoration: InputDecoration(
+                              fillColor: Colors.white,
+                              hintText: "Buscar Contato",
+                              hintStyle: TextStyle(color: Colors.grey),
+                              suffixIcon: Icon(
+                                Icons.search,
+                                color: Colors.grey,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: lista_aux.length,
-                            itemBuilder: _listaChats),
-                      )
-                    ],
-                  ),
-                ]),
-              ),
-            ),
-            Container(
-              height: 40,
-              color: Colors.blue[200],
-              child: Row(
-                children: [
-                  Expanded(
-                      child: SizedBox(
-                    width: 50,
-                  )),
-                  Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10),
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.call,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      onPressed: () {},
+                        Expanded(
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: lista_aux.length,
+                              itemBuilder: _listaChats),
+                        )
+                      ],
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10),
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.pause,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      onPressed: () {},
-                    ),
-                  )
-                ],
+                  ]),
+                ),
               ),
-            )
-          ],
+              Container(
+                height: alturaComponetBaixo,
+                color: Colors.blue[200],
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: SizedBox(
+                      width: 50,
+                    )),
+                    Padding(
+                      padding: EdgeInsets.only(left: 10, right: 10),
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.call,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                        onPressed: () {},
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 10, right: 10),
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.pause,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                        onPressed: () {},
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -4,22 +4,26 @@ import 'FotoUsuario.dart';
 
 class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
   String tipo;
+  double alturaTela;
 
   MyAppBarCuston(
-    this.tipo, {
+    this.tipo,
+    this.alturaTela, {
     Key key,
   }) : super(key: key);
 
-  double proporcaoAltura = 0.16;
+  double proporcaoAltura = 0.18;
+
+  @override
+  Size get preferredSize => Size.fromHeight(alturaTela);
 
   @override
   Widget build(BuildContext context) {
-    double alturaTela = MediaQuery.of(context).size.height;
     double larguraTela = MediaQuery.of(context).size.width;
 
     if (tipo == "listaChat") {
       return Container(
-        height: alturaTela * proporcaoAltura,
+        height: preferredSize.height*proporcaoAltura,
         width: larguraTela,
         color: Color(0xFFbdbdbd),
         child: Column(
@@ -94,7 +98,4 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
       );
     }
   }
-
-  @override
-  Size get preferredSize => Size.fromHeight(100);
 }

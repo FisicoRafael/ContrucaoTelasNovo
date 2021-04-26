@@ -20,13 +20,14 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     double alturaTela = MediaQuery.of(context).size.height;
     double larguraTela = MediaQuery.of(context).size.width;
-    double proporcaoAlturaAppBar = MyAppBarCuston("list").proporcaoAltura;
+    double proporcaoAlturaAppBar = MyAppBarCuston("list",alturaTela).proporcaoAltura;
     double proporcaoAlturaBody = 1.00 - proporcaoAlturaAppBar;
     larguraTelaGlobal = larguraTela;
     alturaTelaGlobal = alturaTela;
 
     return Scaffold(
-      appBar: MyAppBarCuston("chat"),
+
+      appBar: MyAppBarCuston("chat", alturaTela),
       body: SingleChildScrollView(
         child: Container(
           height: alturaTela * proporcaoAlturaBody,

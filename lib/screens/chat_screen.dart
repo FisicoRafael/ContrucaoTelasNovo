@@ -56,7 +56,7 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
               Container(
                   color: Colors.white,
-                  height: alturaTela*0.10,
+                  height: alturaTela*0.12,
                   child: Row(children: <Widget>[
                     Expanded(
                         child: TextField(
@@ -95,7 +95,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         icon: Icon(
                           Icons.group_add,
                           color: Colors.white,
-                          size: 30,
+                          size: alturaTela*0.03,
                         ),
                         onPressed: () {},
                       ),
@@ -106,7 +106,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         icon: Icon(
                           Icons.people,
                           color: Colors.white,
-                          size: 30,
+                          size: alturaTela*0.03,
                         ),
                         onPressed: () {},
                       ),
@@ -121,7 +121,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         icon: Icon(
                           Icons.call,
                           color: Colors.white,
-                          size: 30,
+                          size: alturaTela*0.03,
                         ),
                         onPressed: () {},
                       ),
@@ -132,7 +132,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         icon: Icon(
                           Icons.pause,
                           color: Colors.white,
-                          size: 30,
+                          size: alturaTela*0.03,
                         ),
                         onPressed: () {},
                       ),
@@ -202,7 +202,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget _caixaUsuario() {
     return ClipRRect(
       child: Container(
-        height: alturaTelaGlobal * 0.1,
+        height: alturaTelaGlobal * 0.13,
         width: larguraTelaGlobal,
         decoration: BoxDecoration(
             color: Colors.blue[200],

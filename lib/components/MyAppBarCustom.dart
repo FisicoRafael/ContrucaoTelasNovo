@@ -12,7 +12,7 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
     Key key,
   }) : super(key: key);
 
-  double proporcaoAltura = 0.18;
+  double proporcaoAltura = 0.20;
 
   @override
   Size get preferredSize => Size.fromHeight(alturaTela);

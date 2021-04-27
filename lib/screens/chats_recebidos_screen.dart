@@ -154,7 +154,7 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
                         icon: Icon(
                           Icons.call,
                           color: Colors.white,
-                          size: 30,
+                          size: alturaTela*0.03,
                         ),
                         onPressed: () {},
                       ),
@@ -165,7 +165,7 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
                         icon: Icon(
                           Icons.pause,
                           color: Colors.white,
-                          size: 30,
+                          size: alturaTela*0.03,
                         ),
                         onPressed: () {},
                       ),

@@ -8,13 +8,16 @@ class FotoUsuario extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    double alturaTela = MediaQuery.of(context).size.height;
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(40),
       child: Container(
           color: Colors.white,
           child: Icon(
             icone,
-            size: 50,
+            size: alturaTela*0.05,
             color: Colors.grey,
           )),
     );

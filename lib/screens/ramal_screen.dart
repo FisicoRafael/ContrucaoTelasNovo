@@ -152,8 +152,8 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                       alignment: Alignment.centerLeft,
                                       child: Container(
                                           color: Colors.grey[300],
-                                          width: 180,
-                                          height: 36,
+                                          width: larguraTela*0.45,
+                                          height: alturaTela*0.05,
                                           child: TextField(
                                             style:
                                                 TextStyle(color: Colors.grey),
@@ -179,8 +179,8 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                       alignment: Alignment.centerLeft,
                                       child: Container(
                                           color: Colors.grey[300],
-                                          width: 180,
-                                          height: 36,
+                                          width: larguraTela*0.45,
+                                          height: alturaTela*0.05,
                                           child: TextField(
                                             style: TextStyle(
                                                 color: Colors.black),
@@ -345,7 +345,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                             icon: Icon(
                               Icons.group_add,
                               color: Colors.white,
-                              size: 30,
+                              size: alturaTela*0.03,
                             ),
                           )),
                       Padding(
@@ -354,7 +354,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                           icon: Icon(
                             Icons.people,
                             color: Colors.white,
-                            size: 30,
+                            size: alturaTela*0.03,
                           ),
                         ),
                       ),
@@ -368,7 +368,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                           icon: Icon(
                             Icons.call,
                             color: Colors.white,
-                            size: 30,
+                            size: alturaTela*0.03,
                           ),
                         ),
                       ),
@@ -378,7 +378,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                           icon: Icon(
                             Icons.pause,
                             color: Colors.white,
-                            size: 30,
+                            size: alturaTela*0.03,
                           ),
                         ),
                       )

@@ -135,7 +135,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                       child: Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 29, left: 10),
+                            padding: const EdgeInsets.only(top: 40, left: 10),
                             child: Row(children: [
                               Expanded(
                                 child: Column(
@@ -197,9 +197,9 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    right: 8, left: 3, top: 8),
+                                    right: 8, left: 3, top: 4),
                                 child: Container(
-                                  height: alturaTela * 0.07,
+                                  height: alturaTela * 0.05,
                                   child: Row(
                                     children: [
                                       _buildButton("LIGAR", _onOffLigar),
@@ -212,9 +212,9 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 3, right: 8),
+                                    const EdgeInsets.only(left: 3, right: 4),
                                 child: Container(
-                                  height: alturaTela * 0.07,
+                                  height: alturaTela * 0.05,
                                   child: Row(
                                     children: [
                                       _buildButton("ATENDER", _onOffAtender),
@@ -227,9 +227,9 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 3, right: 8),
+                                    const EdgeInsets.only(left: 3, right: 4),
                                 child: Container(
-                                  height: alturaTela * 0.07,
+                                  height: alturaTela * 0.05,
                                   child: Row(
                                     children: [
                                       _buildButton(
@@ -396,7 +396,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                         topRight: Radius.circular(20),
                         topLeft: Radius.circular(20)),
                     child: Container(
-                      height: 60,
+                      height: alturaTela*0.1,
                       color: Colors.blueGrey,
                       child: Row(
                         children: [
@@ -431,7 +431,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 5),
+                                padding: const EdgeInsets.only(top: 3),
                                 child: Text(
                                   "00:00:00",
                                   style: TextStyle(

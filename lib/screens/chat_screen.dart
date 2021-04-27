@@ -86,7 +86,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ])),
               Container(
                 color: Colors.blue[200],
-                height: alturaTela*0.05,
+                height: alturaTela*0.07,
                 child: Row(
                   children: <Widget>[
                     Padding(

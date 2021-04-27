@@ -335,7 +335,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                   ),
                 ),
                 Container(
-                  color: Colors.blue[200],
+                  color: Colors.blueGrey,
                   height: alturaComponetBaixo,
                   child: Row(
                     children: <Widget>[

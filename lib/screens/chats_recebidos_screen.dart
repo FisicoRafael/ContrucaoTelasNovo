@@ -45,7 +45,7 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
         child: Container(
           height: alturaTela*proporcaoAlturaBody,
           width: larguraTela,
-          color: Colors.greenAccent,
+          color: Colors.blueGrey,
           child: Column(
             children: <Widget>[
               TabBar(
@@ -55,7 +55,7 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
                       borderRadius:
                           BorderRadius.only(topRight: Radius.circular(20)),
                       color: Colors.white),
-                  labelColor: Colors.green,
+                  labelColor: Colors.blueGrey,
                   tabs: [
                     Tab(
                       child: Row(
@@ -141,7 +141,7 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
               ),
               Container(
                 height: alturaComponetBaixo,
-                color: Colors.blue[200],
+                color: Colors.blueGrey,
                 child: Row(
                   children: [
                     Expanded(

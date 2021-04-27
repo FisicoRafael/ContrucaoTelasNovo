@@ -85,7 +85,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     ),
                   ])),
               Container(
-                color: Colors.blue[200],
+                color: Colors.blueGrey,
                 height: alturaTela*0.07,
                 child: Row(
                   children: <Widget>[
@@ -205,7 +205,7 @@ class _ChatScreenState extends State<ChatScreen> {
         height: alturaTelaGlobal * 0.13,
         width: larguraTelaGlobal,
         decoration: BoxDecoration(
-            color: Colors.blue[200],
+            color: Colors.blueGrey,
             borderRadius:
                 BorderRadius.only(topRight: const Radius.circular(40))),
         child: Expanded(

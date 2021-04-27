@@ -23,9 +23,9 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
 
     if (tipo == "listaChat") {
       return Container(
-        height: preferredSize.height*proporcaoAltura,
+        height: preferredSize.height * proporcaoAltura,
         width: larguraTela,
-        color: Color(0xFFbdbdbd),
+        color: Colors.grey[200],
         child: Column(
           children: <Widget>[
             Padding(
@@ -37,7 +37,10 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
               child: Row(
                 children: [
                   IconButton(
-                      icon: Icon(Icons.arrow_back),
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: Colors.black,
+                      ),
                       onPressed: () {
                         Navigator.of(context).pop();
                       }),
@@ -45,7 +48,13 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: Column(
-                      children: [Text("Nome do Agente"), Text("00:00:00")],
+                      children: [
+                        Text(
+                          "Nome do Agente",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        Text("00:00:00", style: TextStyle(color: Colors.black))
+                      ],
                     ),
                   ),
                   Expanded(child: SizedBox()),
@@ -67,7 +76,7 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
       return Container(
         height: alturaTela * proporcaoAltura,
         width: larguraTela,
-        color: Color(0xFFbdbdbd),
+        color: Colors.grey[200],
         child: Column(
           children: <Widget>[
             Padding(
@@ -79,7 +88,7 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
               child: Row(
                 children: [
                   IconButton(
-                      icon: Icon(Icons.arrow_back),
+                      icon: Icon(Icons.arrow_back, color: Colors.black),
                       onPressed: () {
                         Navigator.of(context).pop();
                       }),
@@ -87,7 +96,13 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: Column(
-                      children: [Text("Nome do Agente"), Text("00:00:00")],
+                      children: [
+                        Text(
+                          "Nome do Agente",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        Text("00:00:00", style: TextStyle(color: Colors.black))
+                      ],
                     ),
                   ),
                 ],

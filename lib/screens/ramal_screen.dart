@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:omni_chat_telas/components/BotoesBaixo.dart';
 import 'package:omni_chat_telas/components/MyAppBarCustom.dart';
 import 'package:omni_chat_telas/components/nomes_botoes_textos.dart';
 
@@ -30,7 +31,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
   int _onOffPausa = -1;
   int _onOffLogin = -1;
 
-  Widget _buildButton(String name, int estado) {
+  Widget _buildButton(String name, int estado, double largura, double altura) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.only(left: 5),
@@ -71,7 +72,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
           },
           child: Text(name),
           style: ButtonStyle(
-              minimumSize: MaterialStateProperty.all<Size>(Size(30, 30)),
+              minimumSize: MaterialStateProperty.all<Size>(Size(largura, altura)),
               backgroundColor: MaterialStateProperty.all<Color>(
                   Color(estado == -1 ? 0xFF9e9e9e : 0xFFffa726)),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -94,359 +95,322 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    double alturaAppStatus = MediaQuery.of(context).padding.top;
     double alturaTela = MediaQuery.of(context).size.height;
     double larguraTela = MediaQuery.of(context).size.width;
-    double proporcaoAlturaAppBar = MyAppBarCuston("list",alturaTela).proporcaoAltura;
-    double proporcaoAlturaBody = 1.00 - proporcaoAlturaAppBar;
-    larguraTelaGlobal = larguraTela;
-    alturaTelaGlobal = alturaTela;
+    double alturaAppBar = alturaAppStatus + (0.16 * alturaTela);
 
-    double proporcaoComponenteFundo = 0.93;
-    double distanciaToolBar = alturaTela * 0.05;
+    var appBar =
+        MyAppBarCuston("chat", alturaTela, alturaAppStatus, alturaAppBar);
+    double alturaTelaDisponivel = alturaTela - appBar.alturaAppBar;
 
-    double alturaFundo =
-        alturaTela * proporcaoAlturaBody * proporcaoComponenteFundo;
-    double alturaComponetBaixo =
-        alturaTela * proporcaoAlturaBody * (1 - proporcaoComponenteFundo);
+    //  print(alturaTelaDisponivel);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: MyAppBarCuston("chat",alturaTela),
+      appBar: appBar,
       body: Container(
-        height: alturaTela * proporcaoAlturaBody,
+        height: alturaTelaDisponivel,
         width: larguraTela,
         color: Colors.grey,
-        child: Stack(
-          children: [
-            Column(
-              children: [
-                Container(
-                  height: distanciaToolBar,
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(20),
-                        topLeft: Radius.circular(20)),
-                    child: Container(
-                      height: alturaFundo - distanciaToolBar,
-                      color: Colors.white,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 40, left: 10),
-                            child: Row(children: [
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        "Fila",
-                                        style: TextStyle(
-                                            fontSize: 20, color: Colors.grey),
+        child: LayoutBuilder(builder: (context, constraints) {
+          return Stack(
+            children: [
+              Column(
+                children: [
+                  Container(
+                    height: constraints.maxHeight*0.05,
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          topLeft: Radius.circular(20)),
+                      child: Container(
+                        height: constraints.maxHeight*0.88,
+                        color: Colors.white,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 32, left: 10),
+                              child: Row(children: [
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          "Fila",
+                                          style: TextStyle(
+                                              fontSize: 20, color: Colors.grey),
+                                        ),
                                       ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Container(
-                                          color: Colors.grey[300],
-                                          width: larguraTela*0.45,
-                                          height: alturaTela*0.05,
-                                          child: TextField(
-                                            style:
-                                                TextStyle(color: Colors.grey),
-                                            decoration: InputDecoration(
-                                                hintText: "Nome na Fila"),
-                                          )),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        "Login",
-                                        style: TextStyle(
-                                            fontSize: 20, color: Colors.grey),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Container(
-                                          color: Colors.grey[300],
-                                          width: larguraTela*0.45,
-                                          height: alturaTela*0.05,
-                                          child: TextField(
-                                            style: TextStyle(
-                                                color: Colors.black),
-                                            decoration: InputDecoration(
-                                                hintText: "Nome do Agente"),
-                                          )),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ]),
-                          ),
-                          Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    right: 8, left: 3, top: 4),
-                                child: Container(
-                                  height: alturaTela * 0.05,
-                                  child: Row(
-                                    children: [
-                                      _buildButton("LIGAR", _onOffLigar),
-                                      _buildButton("DTMF", _onOffDTMF),
-                                      _buildButton("CAM", _onOffCam),
-                                      _buildButton("MUTE", _onOffMute),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 3, right: 4),
-                                child: Container(
-                                  height: alturaTela * 0.05,
-                                  child: Row(
-                                    children: [
-                                      _buildButton("ATENDER", _onOffAtender),
-                                      _buildButton("ESPERA", _onOffEspera),
-                                      _buildButton(
-                                          "CONSULTAR", _onOffConsultar)
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 3, right: 4),
-                                child: Container(
-                                  height: alturaTela * 0.05,
-                                  child: Row(
-                                    children: [
-                                      _buildButton(
-                                          "TRANSFERIR", _onOffTransferir),
-                                      _buildButton(
-                                          "CANCELAR", _onOffCancelar),
-                                      _buildButton("CONF", _onOffConf)
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Expanded(
-                              child: Column(
-                            children: [
-                              Stack(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 8),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(20),
-                                          topLeft: Radius.circular(20)),
-                                      child: Align(
+                                      Align(
                                         alignment: Alignment.centerLeft,
                                         child: Container(
-                                          height: alturaTela * 0.07,
-                                          width: larguraTela * 0.7,
-                                          color: Colors.grey,
-                                          child: TabBar(
-                                              unselectedLabelColor:
-                                                  Colors.white,
-                                              controller: _tabController,
-                                              indicator: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  20),
-                                                          topLeft: Radius
-                                                              .circular(20)),
-                                                  color: Colors.orange),
-                                              labelColor: Colors.white,
-                                              tabs: [
-                                                Tab(
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Text("HOME"),
+                                            color: Colors.grey[300],
+                                            width: constraints.maxWidth*0.45,
+                                            height: constraints.maxHeight * 0.06,
+                                            child: TextField(
+                                              style:
+                                                  TextStyle(color: Colors.grey),
+                                              decoration: InputDecoration(
+                                                  hintText: "Nome na Fila"),
+                                            )),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          "Login",
+                                          style: TextStyle(
+                                              fontSize: 20, color: Colors.grey),
+                                        ),
+                                      ),
+                                      Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Container(
+                                            color: Colors.grey[300],
+                                            width: constraints.maxWidth*0.45,
+                                            height: constraints.maxHeight * 0.06,
+                                            child: TextField(
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                              decoration: InputDecoration(
+                                                  hintText: "Nome do Agente"),
+                                            )),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ]),
+                            ),
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 8, left: 3, top: 4),
+                                  child: Container(
+                                    height: constraints.maxHeight * 0.06,
+                                    child: Row(
+                                      children: [
+                                        _buildButton("LIGAR", _onOffLigar, constraints.maxWidth*0.3,constraints.maxHeight*0.04),
+                                        _buildButton("DTMF", _onOffDTMF,constraints.maxWidth*0.3,constraints.maxHeight*0.04),
+                                        _buildButton("CAM", _onOffCam,constraints.maxWidth*0.3,constraints.maxHeight*0.04),
+                                        _buildButton("MUTE", _onOffMute,constraints.maxWidth*0.3,constraints.maxHeight*0.04),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 3, right: 4),
+                                  child: Container(
+                                    height: constraints.maxHeight * 0.06,
+                                    child: Row(
+                                      children: [
+                                        _buildButton("ATENDER", _onOffAtender,constraints.maxWidth*0.5,constraints.maxHeight*0.04),
+                                        _buildButton("ESPERA", _onOffEspera,constraints.maxWidth*0.3,constraints.maxHeight*0.04),
+                                        _buildButton(
+                                            "CONSULTAR", _onOffConsultar, constraints.maxWidth*0.3,constraints.maxHeight*0.04)
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 3, right: 4),
+                                  child: Container(
+                                    height: constraints.maxHeight * 0.06,
+                                    child: Row(
+                                      children: [
+                                        _buildButton(
+                                            "TRANSFERIR", _onOffTransferir, constraints.maxWidth*0.5,constraints.maxHeight*0.04),
+                                        _buildButton(
+                                            "CANCELAR", _onOffCancelar, constraints.maxWidth*0.3,constraints.maxHeight*0.04),
+                                        _buildButton("CONF", _onOffConf,constraints.maxWidth*0.3,constraints.maxHeight*0.04)
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Expanded(
+                                child: Column(
+                              children: [
+                                Stack(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 8, top: 3),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(20),
+                                            topLeft: Radius.circular(20)),
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Container(
+                                            height: constraints.maxHeight*0.08,
+                                            width: constraints.maxWidth*0.7,
+                                            color: Colors.grey,
+                                            child: TabBar(
+                                                unselectedLabelColor:
+                                                    Colors.white,
+                                                controller: _tabController,
+                                                indicator: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    20),
+                                                            topLeft: Radius
+                                                                .circular(20)),
+                                                    color: Colors.orange),
+                                                labelColor: Colors.white,
+                                                tabs: [
+                                                  Tab(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 10),
+                                                      child: Text("HOME"),
+                                                    ),
                                                   ),
-                                                ),
-                                                Tab(
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Text("HISTÓRICO"),
+                                                  Tab(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 10),
+                                                      child: Text("HISTÓRICO"),
+                                                    ),
                                                   ),
-                                                ),
-                                              ]),
+                                                ]),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 8, right: 8),
-                                  child: Container(
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.black12,
-                                              width: 3)),
-                                      child: TabBarView(
-                                          controller: _tabController,
-                                          children: [
-                                            Text("Home",
-                                                style: TextStyle(
-                                                    color: Colors.black)),
-                                            Text("Histórico",
-                                                style: TextStyle(
-                                                    color: Colors.black))
-                                          ])),
+                                  ],
                                 ),
-                              )
-                            ],
-                          )),
-                          Row(
-                            children: [
-                              _buildButton(
-                                  "DESREGISTRAR", _onOffDesRegistrar),
-                              _buildButton("LOGIN", _onOffLogin),
-                              _buildButton("PAUSA", _onOffPausa),
-                            ],
-                          )
-                        ],
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 8, right: 8),
+                                    child: Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 3)),
+                                        child: TabBarView(
+                                            controller: _tabController,
+                                            children: [
+                                              Text("Home",
+                                                  style: TextStyle(
+                                                      color: Colors.black)),
+                                              Text("Histórico",
+                                                  style: TextStyle(
+                                                      color: Colors.black))
+                                            ])),
+                                  ),
+                                )
+                              ],
+                            )),
+                            Row(
+                              children: [
+                                _buildButton(
+                                    "DESREGISTRAR", _onOffDesRegistrar, constraints.maxWidth*0.3,constraints.maxHeight*0.04),
+                                _buildButton("LOGIN", _onOffLogin, constraints.maxWidth*0.3,constraints.maxHeight*0.04),
+                                _buildButton("PAUSA", _onOffPausa, constraints.maxWidth*0.3,constraints.maxHeight*0.04),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Container(
-                  color: Colors.blueGrey,
-                  height: alturaComponetBaixo,
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.group_add,
-                              color: Colors.white,
-                              size: alturaTela*0.03,
+                  Container(
+                    color: Colors.blueGrey,
+                    height: constraints.maxHeight*0.07,
+                    child: Row(
+                      children: <Widget>[
+                        ItemBotaoBaixo(alturaTela, Colors.white, Icons.group_add),
+                        ItemBotaoBaixo(alturaTela, Colors.white, Icons.people),
+                        Expanded(
+                            child: SizedBox(
+                              width: 50,
+                            )),
+                        ItemBotaoBaixo(alturaTela, Colors.white, Icons.call),
+                        ItemBotaoBaixo(alturaTela, Colors.white, Icons.pause),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              Align(
+                alignment: Alignment.topCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 4, left: 20, right: 20),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          topLeft: Radius.circular(20)),
+                      child: Container(
+                        height: constraints.maxHeight*0.1,
+                        color: Colors.blueGrey,
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 6, left: 16),
+                              child: Column(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(40),
+                                    child: Container(
+                                      color: Colors.green,
+                                      height: constraints.maxHeight*0.04,
+                                      width: constraints.maxHeight*0.04,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Ramal: 000",
+                                    style: TextStyle(color: Colors.white),
+                                  )
+                                ],
+                              ),
                             ),
-                          )),
-                      Padding(
-                        padding: EdgeInsets.only(left: 10, right: 10),
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.people,
-                            color: Colors.white,
-                            size: alturaTela*0.03,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                          child: SizedBox(
-                        width: 50,
-                      )),
-                      Padding(
-                        padding: EdgeInsets.only(left: 10, right: 10),
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.call,
-                            color: Colors.white,
-                            size: alturaTela*0.03,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 10, right: 10),
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.pause,
-                            color: Colors.white,
-                            size: alturaTela*0.03,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 4, left: 20, right: 20),
-                child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(20),
-                        topLeft: Radius.circular(20)),
-                    child: Container(
-                      height: alturaTela*0.1,
-                      color: Colors.blueGrey,
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 6, left: 16),
-                            child: Column(
+                            Expanded(
+                                child: Column(
                               children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(40),
-                                  child: Container(
-                                    color: Colors.green,
-                                    height: 35,
-                                    width: 35,
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8),
+                                  child: Text(
+                                    "0000",
+                                    style: TextStyle(
+                                        color: Colors.white, ),
                                   ),
                                 ),
-                                Text(
-                                  "Ramal: 000",
-                                  style: TextStyle(color: Colors.white),
-                                )
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 3),
+                                  child: Text(
+                                    "00:00:00",
+                                    style: TextStyle(
+                                        color: Colors.white, ),
+                                  ),
+                                ),
                               ],
-                            ),
-                          ),
-                          Expanded(
-                              child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8),
-                                child: Text(
-                                  "0000",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 3),
-                                child: Text(
-                                  "00:00:00",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                ),
-                              ),
-                            ],
-                          )),
-                        ],
-                      ),
-                    )),
+                            )),
+                          ],
+                        ),
+                      )),
+                ),
               ),
-            ),
-          ],
-        ),
+            ],
+          );
+        }),
       ),
     );
   }

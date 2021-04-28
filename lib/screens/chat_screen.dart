@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:omni_chat_telas/components/BotoesBaixo.dart';
 import 'package:omni_chat_telas/components/FotoUsuario.dart';
 import 'package:omni_chat_telas/components/MyAppBarCustom.dart';
 import 'package:omni_chat_telas/components/balaozinhos.dart';
@@ -18,22 +19,25 @@ double alturaTelaGlobal;
 class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
+    double alturaAppStatus = MediaQuery.of(context).padding.top;
     double alturaTela = MediaQuery.of(context).size.height;
     double larguraTela = MediaQuery.of(context).size.width;
-    double proporcaoAlturaAppBar = MyAppBarCuston("list",alturaTela).proporcaoAltura;
-    double proporcaoAlturaBody = 1.00 - proporcaoAlturaAppBar;
-    larguraTelaGlobal = larguraTela;
-    alturaTelaGlobal = alturaTela;
+    double alturaAppBar = alturaAppStatus + (0.16 * alturaTela);
+
+    var appBar =
+        MyAppBarCuston("chat", alturaTela, alturaAppStatus, alturaAppBar);
+    double alturaTelaDisponivel = alturaTela - appBar.alturaAppBar;
+
+    //  print(alturaTelaDisponivel);
 
     return Scaffold(
-
-      appBar: MyAppBarCuston("chat", alturaTela),
-      body: SingleChildScrollView(
-        child: Container(
-          height: alturaTela * proporcaoAlturaBody,
-          width: larguraTela,
-          color: Color(0xFFbdbdbd),
-          child: Column(
+      appBar: appBar,
+      body: Container(
+        height: alturaTelaDisponivel,
+        width: larguraTela,
+        color: Color(0xFFbdbdbd),
+        child: LayoutBuilder(builder: (context, constraints) {
+          return Column(
             //mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
@@ -56,7 +60,7 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
               Container(
                   color: Colors.white,
-                  height: alturaTela*0.12,
+                  height: alturaTela * 0.12,
                   child: Row(children: <Widget>[
                     Expanded(
                         child: TextField(
@@ -65,8 +69,8 @@ class _ChatScreenState extends State<ChatScreen> {
                               hintText: "Escreva uma mensagem",
                             ))),
                     IconButton(
-                      icon: Icon(Icons.tag_faces,
-                          color: Colors.orange, size: 30),
+                      icon:
+                          Icon(Icons.tag_faces, color: Colors.orange, size: 30),
                       onPressed: () {},
                     ),
                     IconButton(
@@ -86,63 +90,23 @@ class _ChatScreenState extends State<ChatScreen> {
                   ])),
               Container(
                 color: Colors.blueGrey,
-                height: alturaTela*0.07,
+                height: alturaTela * 0.07,
                 child: Row(
                   children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.group_add,
-                          color: Colors.white,
-                          size: alturaTela*0.03,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.people,
-                          color: Colors.white,
-                          size: alturaTela*0.03,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ),
+                    ItemBotaoBaixo(alturaTela, Colors.white, Icons.group_add),
+                    ItemBotaoBaixo(alturaTela, Colors.white, Icons.people),
                     Expanded(
                         child: SizedBox(
                       width: 50,
                     )),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.call,
-                          color: Colors.white,
-                          size: alturaTela*0.03,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.pause,
-                          color: Colors.white,
-                          size: alturaTela*0.03,
-                        ),
-                        onPressed: () {},
-                      ),
-                    )
+                    ItemBotaoBaixo(alturaTela, Colors.white, Icons.call),
+                    ItemBotaoBaixo(alturaTela, Colors.white, Icons.pause),
                   ],
                 ),
               )
             ],
-          ),
-        ),
+          );
+        }),
       ),
     );
   }
@@ -202,8 +166,6 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget _caixaUsuario() {
     return ClipRRect(
       child: Container(
-        height: alturaTelaGlobal * 0.13,
-        width: larguraTelaGlobal,
         decoration: BoxDecoration(
             color: Colors.blueGrey,
             borderRadius:

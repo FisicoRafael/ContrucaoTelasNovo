@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:omni_chat_telas/components/BotoesBaixo.dart';
 import 'package:omni_chat_telas/components/FotoUsuario.dart';
 import 'package:omni_chat_telas/components/MyAppBarCustom.dart';
 
@@ -26,27 +29,26 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
 
   @override
   Widget build(BuildContext context) {
+    double alturaAppStatus = MediaQuery.of(context).padding.top;
     double alturaTela = MediaQuery.of(context).size.height;
     double larguraTela = MediaQuery.of(context).size.width;
-    double proporcaoAlturaAppBar = MyAppBarCuston("list",alturaTela).proporcaoAltura;
-    double proporcaoAlturaBody = 1.00 - proporcaoAlturaAppBar;
+    double alturaAppBar = alturaAppStatus + (0.15 * alturaTela);
 
-    double proporcaoComponenteFundo = 0.93;
+    var appBar =
+        MyAppBarCuston("chat", alturaTela, alturaAppStatus, alturaAppBar);
+    double alturaTelaDisponivel = alturaTela - alturaAppBar;
 
-    double alturaFundo =
-        alturaTela * proporcaoAlturaBody * proporcaoComponenteFundo;
-    double alturaComponetBaixo =
-        alturaTela * proporcaoAlturaBody * (1 - proporcaoComponenteFundo);
+    print(alturaTelaDisponivel);
 
     context_aux = context;
     return Scaffold(
-      appBar: MyAppBarCuston("listaChat",alturaTela),
-      body: SingleChildScrollView(
-        child: Container(
-          height: alturaTela*proporcaoAlturaBody,
-          width: larguraTela,
-          color: Colors.blueGrey,
-          child: Column(
+      appBar: appBar,
+      body: Container(
+        height: alturaTelaDisponivel,
+        width: larguraTela,
+        color: Colors.blueGrey,
+        child: LayoutBuilder(builder: (context, constraints) {
+          return Column(
             children: <Widget>[
               TabBar(
                   unselectedLabelColor: Colors.white,
@@ -140,7 +142,7 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
                 ),
               ),
               Container(
-                height: alturaComponetBaixo,
+                height: alturaTela * 0.07,
                 color: Colors.blueGrey,
                 child: Row(
                   children: [
@@ -148,34 +150,14 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
                         child: SizedBox(
                       width: 50,
                     )),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.call,
-                          color: Colors.white,
-                          size: alturaTela*0.03,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.pause,
-                          color: Colors.white,
-                          size: alturaTela*0.03,
-                        ),
-                        onPressed: () {},
-                      ),
-                    )
+                    ItemBotaoBaixo(alturaTela, Colors.white, Icons.call),
+                    ItemBotaoBaixo(alturaTela, Colors.white, Icons.pause),
                   ],
                 ),
               )
             ],
-          ),
-        ),
+          );
+        }),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'FotoUsuario.dart';
@@ -5,68 +6,77 @@ import 'FotoUsuario.dart';
 class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
   String tipo;
   double alturaTela;
+  double alturaAppBar;
+  double alturaAppStatus;
 
   MyAppBarCuston(
     this.tipo,
-    this.alturaTela, {
+    this.alturaTela,
+    this.alturaAppStatus,
+    this.alturaAppBar, {
     Key key,
   }) : super(key: key);
-
-  double proporcaoAltura = 0.20;
 
   @override
   Size get preferredSize => Size.fromHeight(alturaTela);
 
+  var imagem = Image.asset('images/logo-lhtec.png');
+
   @override
   Widget build(BuildContext context) {
     double larguraTela = MediaQuery.of(context).size.width;
+    double alturaImagem = preferredSize.height * 0.05;
+    double alturaRow = preferredSize.height * 0.08;
 
     if (tipo == "listaChat") {
       return Container(
-        height: preferredSize.height * proporcaoAltura,
+        height: alturaAppBar,
         width: larguraTela,
         color: Colors.grey[200],
         child: Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: Image.asset('images/logo-lhtec.png'),
+            Container(
+              height: alturaAppStatus,
             ),
+            Container(height: alturaImagem, child: imagem),
             Padding(
               padding: const EdgeInsets.only(top: 8, left: 5),
-              child: Row(
-                children: [
-                  IconButton(
-                      icon: Icon(
-                        Icons.arrow_back,
+              child: Container(
+                height: alturaRow,
+                child: Row(
+                  children: [
+                    IconButton(
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: Colors.black,
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        }),
+                    FotoUsuario(Icons.person),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Column(
+                        children: [
+                          Text(
+                            "Nome do Agente",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          Text("00:00:00",
+                              style: TextStyle(color: Colors.black))
+                        ],
+                      ),
+                    ),
+                    Expanded(child: SizedBox()),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: Icon(
+                        Icons.notifications,
                         color: Colors.black,
                       ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      }),
-                  FotoUsuario(Icons.person),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: Column(
-                      children: [
-                        Text(
-                          "Nome do Agente",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        Text("00:00:00", style: TextStyle(color: Colors.black))
-                      ],
-                    ),
-                  ),
-                  Expanded(child: SizedBox()),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Icon(
-                      Icons.notifications,
-                      color: Colors.black,
-                      size: 35,
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
             )
           ],
@@ -74,38 +84,42 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
       );
     } else {
       return Container(
-        height: alturaTela * proporcaoAltura,
+        height: alturaAppBar,
         width: larguraTela,
         color: Colors.grey[200],
         child: Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: Image.asset('images/logo-lhtec.png'),
+            Container(
+              height: alturaAppStatus,
             ),
+            Container(height: alturaImagem, child: imagem),
             Padding(
               padding: const EdgeInsets.only(top: 8, left: 5),
-              child: Row(
-                children: [
-                  IconButton(
-                      icon: Icon(Icons.arrow_back, color: Colors.black),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      }),
-                  FotoUsuario(Icons.person),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: Column(
-                      children: [
-                        Text(
-                          "Nome do Agente",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        Text("00:00:00", style: TextStyle(color: Colors.black))
-                      ],
+              child: Container(
+                height: alturaRow,
+                child: Row(
+                  children: [
+                    IconButton(
+                        icon: Icon(Icons.arrow_back, color: Colors.black),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        }),
+                    FotoUsuario(Icons.person),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Column(
+                        children: [
+                          Text(
+                            "Nome do Agente",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          Text("00:00:00",
+                              style: TextStyle(color: Colors.black))
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             )
           ],

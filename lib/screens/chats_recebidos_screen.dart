@@ -15,6 +15,7 @@ class ChatsRecebidosScreen extends StatefulWidget {
 }
 
 BuildContext context_aux;
+double alturaGlobalTela;
 
 class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
     with TickerProviderStateMixin {
@@ -32,13 +33,13 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
     double alturaAppStatus = MediaQuery.of(context).padding.top;
     double alturaTela = MediaQuery.of(context).size.height;
     double larguraTela = MediaQuery.of(context).size.width;
-    double alturaAppBar = alturaAppStatus + (0.16 * alturaTela);
+    double alturaAppBar = alturaAppStatus + (0.13 * alturaTela);
 
     var appBar =
         MyAppBarCuston("listaChat", alturaTela, alturaAppStatus, alturaAppBar);
     double alturaTelaDisponivel = alturaTela - alturaAppBar;
 
-    print(alturaTelaDisponivel);
+    alturaGlobalTela = alturaTelaDisponivel;
 
     context_aux = context;
     return Scaffold(
@@ -109,8 +110,8 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
                         Expanded(
                           child: ListView.builder(
                               shrinkWrap: true,
-                              itemCount: lista_aux.length,
-                              itemBuilder: _listaChats),
+                              itemCount: lista_tab_1.length,
+                              itemBuilder: _listaChats_tab_1),
                         )
                       ],
                     ),
@@ -133,8 +134,8 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
                         Expanded(
                           child: ListView.builder(
                               shrinkWrap: true,
-                              itemCount: lista_aux.length,
-                              itemBuilder: _listaChats),
+                              itemCount: lista_tab_2.length,
+                              itemBuilder: _listaChats_tab_2),
                         )
                       ],
                     ),
@@ -163,7 +164,7 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
   }
 }
 
-List<ListTile> lista_aux = [
+List<ListTile> lista_tab_1 = [
   ListTile(
     title: new Text('CineArts at the Empire',
         style: new TextStyle(
@@ -183,10 +184,36 @@ List<ListTile> lista_aux = [
     leading: FotoUsuario(Icons.person),
     trailing: Column(
       children: [
-        Text("00:00:00"),
-        Icon(
-          Icons.notifications,
-          color: Colors.black,
+        Text(
+          "00:00:00",
+          style: TextStyle(color: Colors.black),
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.notifications,
+              color: Colors.black,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Container(
+                  width: alturaGlobalTela * 0.04,
+                  height: alturaGlobalTela * 0.04,
+                  color: Colors.blue,
+                  child: Center(
+                    child: Text(
+                      "2",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
         )
       ],
     ),
@@ -210,10 +237,36 @@ List<ListTile> lista_aux = [
     leading: FotoUsuario(Icons.person),
     trailing: Column(
       children: [
-        Text("00:00:00"),
-        Icon(
-          Icons.notifications,
-          color: Colors.black,
+        Text(
+          "00:00:00",
+          style: TextStyle(color: Colors.black),
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.notifications,
+              color: Colors.black,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Container(
+                  width: alturaGlobalTela * 0.04,
+                  height: alturaGlobalTela * 0.04,
+                  color: Colors.blue,
+                  child: Center(
+                    child: Text(
+                      "2",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
         )
       ],
     ),
@@ -237,10 +290,36 @@ List<ListTile> lista_aux = [
     leading: FotoUsuario(Icons.person),
     trailing: Column(
       children: [
-        Text("00:00:00"),
-        Icon(
-          Icons.notifications,
-          color: Colors.black,
+        Text(
+          "00:00:00",
+          style: TextStyle(color: Colors.black),
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.notifications,
+              color: Colors.black,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Container(
+                  width: alturaGlobalTela * 0.04,
+                  height: alturaGlobalTela * 0.04,
+                  color: Colors.blue,
+                  child: Center(
+                    child: Text(
+                      "2",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
         )
       ],
     ),
@@ -264,10 +343,36 @@ List<ListTile> lista_aux = [
     leading: FotoUsuario(Icons.person),
     trailing: Column(
       children: [
-        Text("00:00:00"),
-        Icon(
-          Icons.notifications,
-          color: Colors.black,
+        Text(
+          "00:00:00",
+          style: TextStyle(color: Colors.black),
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.notifications,
+              color: Colors.black,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Container(
+                  width: alturaGlobalTela * 0.04,
+                  height: alturaGlobalTela * 0.04,
+                  color: Colors.blue,
+                  child: Center(
+                    child: Text(
+                      "2",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
         )
       ],
     ),
@@ -291,10 +396,36 @@ List<ListTile> lista_aux = [
     leading: FotoUsuario(Icons.person),
     trailing: Column(
       children: [
-        Text("00:00:00"),
-        Icon(
-          Icons.notifications,
-          color: Colors.black,
+        Text(
+          "00:00:00",
+          style: TextStyle(color: Colors.black),
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.notifications,
+              color: Colors.black,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Container(
+                  width: alturaGlobalTela * 0.04,
+                  height: alturaGlobalTela * 0.04,
+                  color: Colors.blue,
+                  child: Center(
+                    child: Text(
+                      "2",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
         )
       ],
     ),
@@ -304,13 +435,120 @@ List<ListTile> lista_aux = [
   )
 ];
 
-Widget _listaChats(BuildContext context, int index) {
+List<ListTile> lista_tab_2 = [
+  ListTile(
+    title: new Text('CineArts at the Empire',
+        style: new TextStyle(
+            fontWeight: FontWeight.w500, fontSize: 20.0, color: Colors.black)),
+    subtitle: Row(
+      children: [
+        Icon(
+          Icons.check,
+          color: Colors.black,
+        ),
+        Text(
+          "Texto checado",
+          style: TextStyle(color: Colors.black),
+        )
+      ],
+    ),
+    leading: FotoUsuario(Icons.person),
+    onTap: () {
+      Navigator.pushNamed(context_aux, ChatScreen.id);
+    },
+  ),
+  ListTile(
+    title: new Text('CineArts at the Empire',
+        style: new TextStyle(
+            fontWeight: FontWeight.w500, fontSize: 20.0, color: Colors.black)),
+    subtitle: Row(
+      children: [
+        Icon(
+          Icons.check,
+          color: Colors.black,
+        ),
+        Text("Texto checado", style: TextStyle(color: Colors.black))
+      ],
+    ),
+    leading: FotoUsuario(Icons.person),
+    onTap: () {
+      Navigator.pushNamed(context_aux, ChatScreen.id);
+    },
+  ),
+  ListTile(
+    title: new Text('CineArts at the Empire',
+        style: new TextStyle(
+            fontWeight: FontWeight.w500, fontSize: 20.0, color: Colors.black)),
+    subtitle: Row(
+      children: [
+        Icon(
+          Icons.check,
+          color: Colors.black,
+        ),
+        Text("Texto checado", style: TextStyle(color: Colors.black))
+      ],
+    ),
+    leading: FotoUsuario(Icons.person),
+    onTap: () {
+      Navigator.pushNamed(context_aux, ChatScreen.id);
+    },
+  ),
+  ListTile(
+    title: new Text('CineArts at the Empire',
+        style: new TextStyle(
+            fontWeight: FontWeight.w500, fontSize: 20.0, color: Colors.black)),
+    subtitle: Row(
+      children: [
+        Icon(
+          Icons.check,
+          color: Colors.black,
+        ),
+        Text("Texto checado", style: TextStyle(color: Colors.black))
+      ],
+    ),
+    leading: FotoUsuario(Icons.person),
+    onTap: () {
+      Navigator.pushNamed(context_aux, ChatScreen.id);
+    },
+  ),
+  ListTile(
+    title: new Text('CineArts at the Empire',
+        style: new TextStyle(
+            fontWeight: FontWeight.w500, fontSize: 20.0, color: Colors.black)),
+    subtitle: Row(
+      children: [
+        Icon(
+          Icons.check,
+          color: Colors.black,
+        ),
+        Text("Texto checado", style: TextStyle(color: Colors.black))
+      ],
+    ),
+    leading: FotoUsuario(Icons.person),
+    onTap: () {
+      Navigator.pushNamed(context_aux, ChatScreen.id);
+    },
+  )
+];
+
+Widget _listaChats_tab_1(BuildContext context, int index) {
   return Padding(
     padding: const EdgeInsets.only(left: 10, right: 10),
     child: Container(
         decoration: BoxDecoration(
             border:
                 Border(bottom: BorderSide(width: 1, color: Colors.black45))),
-        child: lista_aux[index]),
+        child: lista_tab_1[index]),
+  );
+}
+
+Widget _listaChats_tab_2(BuildContext context, int index) {
+  return Padding(
+    padding: const EdgeInsets.only(left: 10, right: 10),
+    child: Container(
+        decoration: BoxDecoration(
+            border:
+                Border(bottom: BorderSide(width: 1, color: Colors.black45))),
+        child: lista_tab_2[index]),
   );
 }

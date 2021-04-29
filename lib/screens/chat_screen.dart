@@ -22,7 +22,7 @@ class _ChatScreenState extends State<ChatScreen> {
     double alturaAppStatus = MediaQuery.of(context).padding.top;
     double alturaTela = MediaQuery.of(context).size.height;
     double larguraTela = MediaQuery.of(context).size.width;
-    double alturaAppBar = alturaAppStatus + (0.16 * alturaTela);
+    double alturaAppBar = alturaAppStatus + (0.13 * alturaTela);
 
     var appBar =
         MyAppBarCuston("chat", alturaTela, alturaAppStatus, alturaAppBar);

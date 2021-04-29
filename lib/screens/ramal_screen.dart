@@ -72,7 +72,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
           },
           child: Text(
             name,
-            style: TextStyle(fontSize: 12),
+            style: TextStyle(fontSize: 11),
           ),
           style: ButtonStyle(
               minimumSize:
@@ -102,7 +102,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
     double alturaAppStatus = MediaQuery.of(context).padding.top;
     double alturaTela = MediaQuery.of(context).size.height;
     double larguraTela = MediaQuery.of(context).size.width;
-    double alturaAppBar = alturaAppStatus + (0.16 * alturaTela);
+    double alturaAppBar = alturaAppStatus + (0.13 * alturaTela);
 
     var appBar =
         MyAppBarCuston("chat", alturaTela, alturaAppStatus, alturaAppBar);
@@ -300,7 +300,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                           ),
                                           child: Container(
                                             height:
-                                                constraints.maxHeight * 0.06,
+                                                constraints.maxHeight * 0.08,
                                             width: constraints.maxWidth * 0.7,
                                             color: Colors.grey,
                                             child: TabBar(
@@ -367,7 +367,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                   _buildButton(
                                       "DESREGISTRAR",
                                       _onOffDesRegistrar,
-                                      constraints.maxWidth * 0.3,
+                                      constraints.maxWidth * 0.5,
                                       constraints.maxHeight * 0.04),
                                   _buildButton(
                                       "LOGIN",
@@ -444,7 +444,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                 child: Column(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 8),
+                                  padding: const EdgeInsets.only(top: 4),
                                   child: Text(
                                     "0000",
                                     style: TextStyle(

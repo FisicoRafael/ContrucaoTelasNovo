@@ -38,8 +38,8 @@ class _ChatScreenState extends State<ChatScreen> {
         color: Color(0xFFbdbdbd),
         child: LayoutBuilder(builder: (context, constraints) {
           return Column(
-            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               _caixaUsuario(),
               Expanded(
@@ -60,37 +60,41 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
               Container(
                   color: Colors.white,
-                  height: alturaTela * 0.12,
+                  height: constraints.maxHeight*0.1,
                   child: Row(children: <Widget>[
                     Expanded(
-                        child: TextField(
-                            style: TextStyle(color: Colors.black),
-                            decoration: InputDecoration(
-                              hintText: "Escreva uma mensagem",
-                            ))),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: TextField(
+                              style: TextStyle(color: Colors.black),
+                              decoration: InputDecoration(
+                                hintStyle: TextStyle(color: Colors.grey[400]),
+                                hintText: "Escreva uma mensagem",
+                              )),
+                        )),
                     IconButton(
                       icon:
-                          Icon(Icons.tag_faces, color: Colors.orange, size: 30),
+                          Icon(Icons.tag_faces, color: Colors.orange),
                       onPressed: () {},
                     ),
                     IconButton(
                       icon: Icon(Icons.attach_file,
-                          color: Colors.orange, size: 30),
+                          color: Colors.orange),
                       onPressed: () {},
                     ),
                     IconButton(
                       icon: Icon(Icons.subdirectory_arrow_left_rounded,
-                          color: Colors.orange, size: 30),
+                          color: Colors.orange),
                       onPressed: () {},
                     ),
                     IconButton(
-                      icon: Icon(Icons.mic, color: Colors.orange, size: 30),
+                      icon: Icon(Icons.mic, color: Colors.orange),
                       onPressed: () {},
                     ),
                   ])),
               Container(
                 color: Colors.blueGrey,
-                height: alturaTela * 0.07,
+                height: constraints.maxHeight* 0.07,
                 child: Row(
                   children: <Widget>[
                     ItemBotaoBaixo(alturaTela, Colors.white, Icons.group_add),
@@ -166,6 +170,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget _caixaUsuario() {
     return ClipRRect(
       child: Container(
+        padding: EdgeInsets.only(bottom: 8),
         decoration: BoxDecoration(
             color: Colors.blueGrey,
             borderRadius:
@@ -201,121 +206,124 @@ class _ChatScreenState extends State<ChatScreen> {
                   ],
                 ),
               ),
-              PopupMenuButton(
-                  onSelected: (int item) {
-                    Navigator.pushNamed(context, RamalScren.id);
-                  },
-                  color: Colors.white,
-                  itemBuilder: (context) => [
-                        PopupMenuItem(
-                          value: 1,
-                          child: Row(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
-                                child: Icon(
-                                  Icons.update,
-                                  color: Colors.black,
+              Align(
+                alignment: Alignment.centerRight,
+                child: PopupMenuButton(
+                    onSelected: (int item) {
+                      Navigator.pushNamed(context, RamalScren.id);
+                    },
+                    color: Colors.white,
+                    itemBuilder: (context) => [
+                          PopupMenuItem(
+                            value: 1,
+                            child: Row(
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
+                                  child: Icon(
+                                    Icons.update,
+                                    color: Colors.black,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "Atualizar",
-                                style: TextStyle(color: Colors.black),
-                              )
-                            ],
+                                Text(
+                                  "Atualizar",
+                                  style: TextStyle(color: Colors.black),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        PopupMenuItem(
-                          value: 2,
-                          child: Row(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
-                                child: Icon(
-                                  Icons.history,
-                                  color: Colors.black,
+                          PopupMenuItem(
+                            value: 2,
+                            child: Row(
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
+                                  child: Icon(
+                                    Icons.history,
+                                    color: Colors.black,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "Histórico Cliente",
-                                style: TextStyle(color: Colors.black),
-                              )
-                            ],
+                                Text(
+                                  "Histórico Cliente",
+                                  style: TextStyle(color: Colors.black),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        PopupMenuItem(
-                          value: 3,
-                          child: Row(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
-                                child: Icon(
-                                  Icons.arrow_forward_rounded,
-                                  color: Colors.black,
+                          PopupMenuItem(
+                            value: 3,
+                            child: Row(
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
+                                  child: Icon(
+                                    Icons.arrow_forward_rounded,
+                                    color: Colors.black,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "Transferir Atendimento",
-                                style: TextStyle(color: Colors.black),
-                              )
-                            ],
+                                Text(
+                                  "Transferir Atendimento",
+                                  style: TextStyle(color: Colors.black),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        PopupMenuItem(
-                          value: 4,
-                          child: Row(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
-                                child: Icon(
-                                  Icons.flag,
-                                  color: Colors.black,
+                          PopupMenuItem(
+                            value: 4,
+                            child: Row(
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
+                                  child: Icon(
+                                    Icons.flag,
+                                    color: Colors.black,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "Lembrete de Retorno",
-                                style: TextStyle(color: Colors.black),
-                              )
-                            ],
+                                Text(
+                                  "Lembrete de Retorno",
+                                  style: TextStyle(color: Colors.black),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        PopupMenuItem(
-                          value: 5,
-                          child: Row(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
-                                child: Icon(
-                                  Icons.assistant_rounded,
-                                  color: Colors.black,
+                          PopupMenuItem(
+                            value: 5,
+                            child: Row(
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
+                                  child: Icon(
+                                    Icons.assistant_rounded,
+                                    color: Colors.black,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "Classificar Atendimento",
-                                style: TextStyle(color: Colors.black),
-                              )
-                            ],
+                                Text(
+                                  "Classificar Atendimento",
+                                  style: TextStyle(color: Colors.black),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        PopupMenuItem(
-                          value: 6,
-                          child: Row(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
-                                child: Icon(
-                                  Icons.close,
-                                  color: Colors.black,
+                          PopupMenuItem(
+                            value: 6,
+                            child: Row(
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
+                                  child: Icon(
+                                    Icons.close,
+                                    color: Colors.black,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "Fechar Conversa",
-                                style: TextStyle(color: Colors.black),
-                              )
-                            ],
-                          ),
-                        )
-                      ])
+                                Text(
+                                  "Fechar Conversa",
+                                  style: TextStyle(color: Colors.black),
+                                )
+                              ],
+                            ),
+                          )
+                        ]),
+              )
             ],
           ),
         ),

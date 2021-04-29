@@ -44,6 +44,8 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
               child: Container(
                 height: alturaRow,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     IconButton(
                         icon: Icon(
@@ -55,7 +57,7 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
                         }),
                     FotoUsuario(Icons.person),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8),
+                      padding: const EdgeInsets.only(left: 15, top: 18),
                       child: Column(
                         children: [
                           Text(

@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 import 'chats_recebidos_screen.dart';
@@ -12,9 +10,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  Widget _campoTexto(String labelHint, IconData icone, TextInputType tipoTexto) {
-
-    bool esconderTexto = (labelHint == 'Enter your password.' ?  true : false );
+  Widget _campoTexto(
+      String labelHint, IconData icone, TextInputType tipoTexto) {
+    bool esconderTexto = (labelHint == 'Enter your password.' ? true : false);
 
     return Padding(
         padding: const EdgeInsets.only(top: 8, bottom: 8, left: 20, right: 20),
@@ -53,13 +51,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    double altura = MediaQuery.of(context).size.height;
+    double largura = MediaQuery.of(context).size.width;
 
+    return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height,
+            height: altura,
             decoration: BoxDecoration(
                 color: Colors.white,
                 image: DecorationImage(
@@ -71,42 +71,50 @@ class _LoginScreenState extends State<LoginScreen> {
                         Colors.white.withOpacity(0.3), BlendMode.dstATop))),
           ),
           SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                SizedBox(height: 70),
-                Container(
-                  height: 200.0,
-                  child: Image.asset('images/logo-lhtec.png'),
-                ),
-                SizedBox(
-                  height: 30.0,
-                ),
-                _campoTexto('Enter yoir email', Icons.person, TextInputType.emailAddress),
-                SizedBox(
-                  height: 8.0,
-                ),
-                _campoTexto('Enter your password.', Icons.lock, TextInputType.text),
-                SizedBox(
-                  height: 24.0,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 70, right: 70),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, ChatsRecebidosScreen.id);
-                    },
-                    child: Text(
-                      "Log In",
-                      style: TextStyle(fontSize: 24),
+            child: Container(
+              height: altura,
+              width: largura,
+              child: LayoutBuilder(builder: (context, constraints) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      height: constraints.maxHeight * 0.1,
+                      child: Image.asset('images/logo-lhtec.png'),
                     ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.grey,
+                    Container(
+                      height: constraints.maxHeight * 0.1,
                     ),
-                  ),
-                )
-              ],
+                    _campoTexto('Enter yoir email', Icons.person,
+                        TextInputType.emailAddress),
+                    Container(
+                      height: constraints.maxHeight * 0.03,
+                    ),
+                    _campoTexto(
+                        'Enter your password.', Icons.lock, TextInputType.text),
+                    Container(
+                      height: constraints.maxHeight * 0.03,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 70, right: 70),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, ChatsRecebidosScreen.id);
+                        },
+                        child: Text(
+                          "Log In",
+                          style: TextStyle(fontSize: 24),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.grey[700],
+                            minimumSize: Size(constraints.maxWidth * 0.6,
+                                constraints.maxHeight * 0.07)),
+                      ),
+                    ),
+                  ],
+                );
+              }),
             ),
           ),
         ],

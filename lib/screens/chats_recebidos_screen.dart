@@ -35,7 +35,7 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
     double alturaAppBar = alturaAppStatus + (0.15 * alturaTela);
 
     var appBar =
-        MyAppBarCuston("chat", alturaTela, alturaAppStatus, alturaAppBar);
+        MyAppBarCuston("listaChat", alturaTela, alturaAppStatus, alturaAppBar);
     double alturaTelaDisponivel = alturaTela - alturaAppBar;
 
     print(alturaTelaDisponivel);
@@ -142,7 +142,7 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
                 ),
               ),
               Container(
-                height: alturaTela * 0.07,
+                height: constraints.maxHeight * 0.07,
                 color: Colors.blueGrey,
                 child: Row(
                   children: [

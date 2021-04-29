@@ -70,9 +70,13 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
               }
             });
           },
-          child: Text(name),
+          child: Text(
+            name,
+            style: TextStyle(fontSize: 12),
+          ),
           style: ButtonStyle(
-              minimumSize: MaterialStateProperty.all<Size>(Size(largura, altura)),
+              minimumSize:
+                  MaterialStateProperty.all<Size>(Size(largura, altura)),
               backgroundColor: MaterialStateProperty.all<Color>(
                   Color(estado == -1 ? 0xFF9e9e9e : 0xFFffa726)),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -119,7 +123,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
               Column(
                 children: [
                   Container(
-                    height: constraints.maxHeight*0.05,
+                    height: constraints.maxHeight * 0.05,
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
@@ -128,7 +132,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                           topRight: Radius.circular(20),
                           topLeft: Radius.circular(20)),
                       child: Container(
-                        height: constraints.maxHeight*0.88,
+                        height: constraints.maxHeight * 0.88,
                         color: Colors.white,
                         child: Column(
                           children: [
@@ -150,8 +154,9 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                         alignment: Alignment.centerLeft,
                                         child: Container(
                                             color: Colors.grey[300],
-                                            width: constraints.maxWidth*0.45,
-                                            height: constraints.maxHeight * 0.06,
+                                            width: constraints.maxWidth * 0.45,
+                                            height:
+                                                constraints.maxHeight * 0.06,
                                             child: TextField(
                                               style:
                                                   TextStyle(color: Colors.grey),
@@ -177,8 +182,9 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                         alignment: Alignment.centerLeft,
                                         child: Container(
                                             color: Colors.grey[300],
-                                            width: constraints.maxWidth*0.45,
-                                            height: constraints.maxHeight * 0.06,
+                                            width: constraints.maxWidth * 0.45,
+                                            height:
+                                                constraints.maxHeight * 0.06,
                                             child: TextField(
                                               style: TextStyle(
                                                   color: Colors.black),
@@ -200,10 +206,26 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                     height: constraints.maxHeight * 0.06,
                                     child: Row(
                                       children: [
-                                        _buildButton("LIGAR", _onOffLigar, constraints.maxWidth*0.3,constraints.maxHeight*0.04),
-                                        _buildButton("DTMF", _onOffDTMF,constraints.maxWidth*0.3,constraints.maxHeight*0.04),
-                                        _buildButton("CAM", _onOffCam,constraints.maxWidth*0.3,constraints.maxHeight*0.04),
-                                        _buildButton("MUTE", _onOffMute,constraints.maxWidth*0.3,constraints.maxHeight*0.04),
+                                        _buildButton(
+                                            "LIGAR",
+                                            _onOffLigar,
+                                            constraints.maxWidth * 0.3,
+                                            constraints.maxHeight * 0.04),
+                                        _buildButton(
+                                            "DTMF",
+                                            _onOffDTMF,
+                                            constraints.maxWidth * 0.3,
+                                            constraints.maxHeight * 0.04),
+                                        _buildButton(
+                                            "CAM",
+                                            _onOffCam,
+                                            constraints.maxWidth * 0.3,
+                                            constraints.maxHeight * 0.04),
+                                        _buildButton(
+                                            "MUTE",
+                                            _onOffMute,
+                                            constraints.maxWidth * 0.3,
+                                            constraints.maxHeight * 0.04),
                                       ],
                                     ),
                                   ),
@@ -215,10 +237,21 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                     height: constraints.maxHeight * 0.06,
                                     child: Row(
                                       children: [
-                                        _buildButton("ATENDER", _onOffAtender,constraints.maxWidth*0.5,constraints.maxHeight*0.04),
-                                        _buildButton("ESPERA", _onOffEspera,constraints.maxWidth*0.3,constraints.maxHeight*0.04),
                                         _buildButton(
-                                            "CONSULTAR", _onOffConsultar, constraints.maxWidth*0.3,constraints.maxHeight*0.04)
+                                            "ATENDER",
+                                            _onOffAtender,
+                                            constraints.maxWidth * 0.5,
+                                            constraints.maxHeight * 0.04),
+                                        _buildButton(
+                                            "ESPERA",
+                                            _onOffEspera,
+                                            constraints.maxWidth * 0.3,
+                                            constraints.maxHeight * 0.04),
+                                        _buildButton(
+                                            "CONSULTAR",
+                                            _onOffConsultar,
+                                            constraints.maxWidth * 0.3,
+                                            constraints.maxHeight * 0.04)
                                       ],
                                     ),
                                   ),
@@ -231,10 +264,20 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                     child: Row(
                                       children: [
                                         _buildButton(
-                                            "TRANSFERIR", _onOffTransferir, constraints.maxWidth*0.5,constraints.maxHeight*0.04),
+                                            "TRANSFERIR",
+                                            _onOffTransferir,
+                                            constraints.maxWidth * 0.5,
+                                            constraints.maxHeight * 0.04),
                                         _buildButton(
-                                            "CANCELAR", _onOffCancelar, constraints.maxWidth*0.3,constraints.maxHeight*0.04),
-                                        _buildButton("CONF", _onOffConf,constraints.maxWidth*0.3,constraints.maxHeight*0.04)
+                                            "CANCELAR",
+                                            _onOffCancelar,
+                                            constraints.maxWidth * 0.3,
+                                            constraints.maxHeight * 0.04),
+                                        _buildButton(
+                                            "CONF",
+                                            _onOffConf,
+                                            constraints.maxWidth * 0.3,
+                                            constraints.maxHeight * 0.04)
                                       ],
                                     ),
                                   ),
@@ -248,15 +291,17 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                   children: [
                                     Padding(
                                       padding: EdgeInsets.only(left: 8, top: 3),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.only(
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20),
                                             topRight: Radius.circular(20),
-                                            topLeft: Radius.circular(20)),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
+                                          ),
                                           child: Container(
-                                            height: constraints.maxHeight*0.08,
-                                            width: constraints.maxWidth*0.7,
+                                            height:
+                                                constraints.maxHeight * 0.06,
+                                            width: constraints.maxWidth * 0.7,
                                             color: Colors.grey,
                                             child: TabBar(
                                                 unselectedLabelColor:
@@ -275,17 +320,13 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                                 tabs: [
                                                   Tab(
                                                     child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 10),
+                                                      padding: const EdgeInsets.all(8.0),
                                                       child: Text("HOME"),
                                                     ),
                                                   ),
                                                   Tab(
                                                     child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 10),
+                                                      padding: const EdgeInsets.all(8.0),
                                                       child: Text("HISTÓRICO"),
                                                     ),
                                                   ),
@@ -319,13 +360,27 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                 )
                               ],
                             )),
-                            Row(
-                              children: [
-                                _buildButton(
-                                    "DESREGISTRAR", _onOffDesRegistrar, constraints.maxWidth*0.3,constraints.maxHeight*0.04),
-                                _buildButton("LOGIN", _onOffLogin, constraints.maxWidth*0.3,constraints.maxHeight*0.04),
-                                _buildButton("PAUSA", _onOffPausa, constraints.maxWidth*0.3,constraints.maxHeight*0.04),
-                              ],
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: Row(
+                                children: [
+                                  _buildButton(
+                                      "DESREGISTRAR",
+                                      _onOffDesRegistrar,
+                                      constraints.maxWidth * 0.3,
+                                      constraints.maxHeight * 0.04),
+                                  _buildButton(
+                                      "LOGIN",
+                                      _onOffLogin,
+                                      constraints.maxWidth * 0.3,
+                                      constraints.maxHeight * 0.04),
+                                  _buildButton(
+                                      "PAUSA",
+                                      _onOffPausa,
+                                      constraints.maxWidth * 0.3,
+                                      constraints.maxHeight * 0.04),
+                                ],
+                              ),
                             )
                           ],
                         ),
@@ -334,15 +389,16 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                   ),
                   Container(
                     color: Colors.blueGrey,
-                    height: constraints.maxHeight*0.07,
+                    height: constraints.maxHeight * 0.07,
                     child: Row(
                       children: <Widget>[
-                        ItemBotaoBaixo(alturaTela, Colors.white, Icons.group_add),
+                        ItemBotaoBaixo(
+                            alturaTela, Colors.white, Icons.group_add),
                         ItemBotaoBaixo(alturaTela, Colors.white, Icons.people),
                         Expanded(
                             child: SizedBox(
-                              width: 50,
-                            )),
+                          width: 50,
+                        )),
                         ItemBotaoBaixo(alturaTela, Colors.white, Icons.call),
                         ItemBotaoBaixo(alturaTela, Colors.white, Icons.pause),
                       ],
@@ -359,7 +415,7 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                           topRight: Radius.circular(20),
                           topLeft: Radius.circular(20)),
                       child: Container(
-                        height: constraints.maxHeight*0.1,
+                        height: constraints.maxHeight * 0.09,
                         color: Colors.blueGrey,
                         child: Row(
                           children: [
@@ -371,8 +427,8 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                     borderRadius: BorderRadius.circular(40),
                                     child: Container(
                                       color: Colors.green,
-                                      height: constraints.maxHeight*0.04,
-                                      width: constraints.maxHeight*0.04,
+                                      height: constraints.maxHeight * 0.04,
+                                      width: constraints.maxHeight * 0.04,
                                     ),
                                   ),
                                   Text(
@@ -390,7 +446,8 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                   child: Text(
                                     "0000",
                                     style: TextStyle(
-                                        color: Colors.white, ),
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                                 Padding(
@@ -398,7 +455,8 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                   child: Text(
                                     "00:00:00",
                                     style: TextStyle(
-                                        color: Colors.white, ),
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ],

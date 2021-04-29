@@ -96,7 +96,7 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
             ),
             Container(height: alturaImagem, child: imagem),
             Padding(
-              padding: const EdgeInsets.only(left: 15, top: 18),
+              padding: const EdgeInsets.only(top: 8, left: 5),
               child: Container(
                 height: alturaRow,
                 child: Row(
@@ -108,7 +108,7 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
                         }),
                     FotoUsuario(Icons.person),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8),
+                      padding: const EdgeInsets.only(left: 15, top: 18),
                       child: Column(
                         children: [
                           Text(

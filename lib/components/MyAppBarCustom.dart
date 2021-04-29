@@ -33,55 +33,55 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
         height: alturaAppBar,
         width: larguraTela,
         color: Colors.grey[200],
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: alturaAppStatus,
-            ),
-            Container(height: alturaImagem, child: imagem),
-            Padding(
-              padding: const EdgeInsets.only(top: 8, left: 5),
-              child: Container(
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: alturaAppStatus,
+              ),
+              Container(height: alturaImagem, child: imagem),
+              Container(
                 height: alturaRow,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    IconButton(
-                        icon: Icon(
-                          Icons.arrow_back,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        }),
-                    FotoUsuario(Icons.person),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15, top: 18),
-                      child: Column(
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      IconButton(
+                          icon: Icon(
+                            Icons.arrow_back,
+                            color: Colors.black,
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          }),
+                      FotoUsuario(Icons.person),
+                      Column(
                         children: [
+                          Expanded(child: SizedBox()),
                           Text(
                             "Nome do Agente",
                             style: TextStyle(color: Colors.black),
                           ),
                           Text("00:00:00",
-                              style: TextStyle(color: Colors.black))
+                              style: TextStyle(color: Colors.black)),
+                          Expanded(child: SizedBox()),
                         ],
                       ),
-                    ),
-                    Expanded(child: SizedBox()),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Icon(
-                        Icons.notifications,
-                        color: Colors.black,
-                      ),
-                    )
-                  ],
+                      Expanded(child: SizedBox()),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10, top: 10),
+                        child: Icon(
+                          Icons.notifications,
+                          color: Colors.black,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       );
     } else {
@@ -89,17 +89,17 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
         height: alturaAppBar,
         width: larguraTela,
         color: Colors.grey[200],
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: alturaAppStatus,
-            ),
-            Container(height: alturaImagem, child: imagem),
-            Padding(
-              padding: const EdgeInsets.only(top: 8, left: 5),
-              child: Container(
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: alturaAppStatus,
+              ),
+              Container(height: alturaImagem, child: imagem),
+              Container(
                 height: alturaRow,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     IconButton(
                         icon: Icon(Icons.arrow_back, color: Colors.black),
@@ -107,24 +107,23 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
                           Navigator.of(context).pop();
                         }),
                     FotoUsuario(Icons.person),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15, top: 18),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Nome do Agente",
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          Text("00:00:00",
-                              style: TextStyle(color: Colors.black))
-                        ],
-                      ),
+                    Column(
+                      children: [
+                        Expanded(child: SizedBox()),
+                        Text(
+                          "Nome do Agente",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        Text("00:00:00", style: TextStyle(color: Colors.black)),
+                        Expanded(child: SizedBox()),
+                      ],
                     ),
+                    Expanded(child: SizedBox())
                   ],
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       );
     }

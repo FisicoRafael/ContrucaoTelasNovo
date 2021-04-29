@@ -32,7 +32,7 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
     double alturaAppStatus = MediaQuery.of(context).padding.top;
     double alturaTela = MediaQuery.of(context).size.height;
     double larguraTela = MediaQuery.of(context).size.width;
-    double alturaAppBar = alturaAppStatus + (0.15 * alturaTela);
+    double alturaAppBar = alturaAppStatus + (0.16 * alturaTela);
 
     var appBar =
         MyAppBarCuston("listaChat", alturaTela, alturaAppStatus, alturaAppBar);

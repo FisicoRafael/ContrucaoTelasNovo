@@ -57,7 +57,7 @@ class _ChatsRecebidosScreenState extends State<ChatsRecebidosScreen>
                       borderRadius:
                           BorderRadius.only(topRight: Radius.circular(20)),
                       color: Colors.white),
-                  labelColor: Colors.blueGrey,
+                  labelColor: Colors.lightGreenAccent[400],
                   tabs: [
                     Tab(
                       child: Row(

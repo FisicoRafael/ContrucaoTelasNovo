@@ -425,10 +425,12 @@ class _RamalScrenState extends State<RamalScren> with TickerProviderStateMixin {
                                 children: [
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(40),
+                                    
                                     child: Container(
                                       color: Colors.green,
                                       height: constraints.maxHeight * 0.04,
                                       width: constraints.maxHeight * 0.04,
+
                                     ),
                                   ),
                                   Text(

@@ -96,7 +96,7 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
             ),
             Container(height: alturaImagem, child: imagem),
             Padding(
-              padding: const EdgeInsets.only(top: 8, left: 5),
+              padding: const EdgeInsets.only(left: 15, top: 18),
               child: Container(
                 height: alturaRow,
                 child: Row(

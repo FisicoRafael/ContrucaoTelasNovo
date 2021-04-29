@@ -56,17 +56,20 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
                             Navigator.of(context).pop();
                           }),
                       FotoUsuario(Icons.person),
-                      Column(
-                        children: [
-                          Expanded(child: SizedBox()),
-                          Text(
-                            "Nome do Agente",
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          Text("00:00:00",
-                              style: TextStyle(color: Colors.black)),
-                          Expanded(child: SizedBox()),
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Expanded(child: SizedBox()),
+                            Text(
+                              "Nome do Agente",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            Text("00:00:00",
+                                style: TextStyle(color: Colors.black)),
+                            Expanded(child: SizedBox()),
+                          ],
+                        ),
                       ),
                       Expanded(child: SizedBox()),
                       Padding(
@@ -107,16 +110,19 @@ class MyAppBarCuston extends StatelessWidget implements PreferredSizeWidget {
                           Navigator.of(context).pop();
                         }),
                     FotoUsuario(Icons.person),
-                    Column(
-                      children: [
-                        Expanded(child: SizedBox()),
-                        Text(
-                          "Nome do Agente",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        Text("00:00:00", style: TextStyle(color: Colors.black)),
-                        Expanded(child: SizedBox()),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Expanded(child: SizedBox()),
+                          Text(
+                            "Nome do Agente",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          Text("00:00:00", style: TextStyle(color: Colors.black)),
+                          Expanded(child: SizedBox()),
+                        ],
+                      ),
                     ),
                     Expanded(child: SizedBox())
                   ],

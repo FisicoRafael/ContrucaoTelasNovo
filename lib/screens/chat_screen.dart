@@ -60,26 +60,24 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
               Container(
                   color: Colors.white,
-                  height: constraints.maxHeight*0.1,
+                  height: constraints.maxHeight * 0.1,
                   child: Row(children: <Widget>[
                     Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 8),
-                          child: TextField(
-                              style: TextStyle(color: Colors.black),
-                              decoration: InputDecoration(
-                                hintStyle: TextStyle(color: Colors.grey[400]),
-                                hintText: "Escreva uma mensagem",
-                              )),
-                        )),
+                      padding: const EdgeInsets.only(left: 8),
+                      child: TextField(
+                          style: TextStyle(color: Colors.black),
+                          decoration: InputDecoration(
+                            hintStyle: TextStyle(color: Colors.grey[400]),
+                            hintText: "Escreva uma mensagem",
+                          )),
+                    )),
                     IconButton(
-                      icon:
-                          Icon(Icons.tag_faces, color: Colors.orange),
+                      icon: Icon(Icons.tag_faces, color: Colors.orange),
                       onPressed: () {},
                     ),
                     IconButton(
-                      icon: Icon(Icons.attach_file,
-                          color: Colors.orange),
+                      icon: Icon(Icons.attach_file, color: Colors.orange),
                       onPressed: () {},
                     ),
                     IconButton(
@@ -94,7 +92,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ])),
               Container(
                 color: Colors.blueGrey,
-                height: constraints.maxHeight* 0.07,
+                height: constraints.maxHeight * 0.07,
                 child: Row(
                   children: <Widget>[
                     ItemBotaoBaixo(alturaTela, Colors.white, Icons.group_add),
@@ -208,6 +206,7 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
               Expanded(child: SizedBox()),
               PopupMenuButton(
+                  icon: Icon(Icons.more_vert),
                   onSelected: (int item) {
                     Navigator.pushNamed(context, RamalScren.id);
                   },

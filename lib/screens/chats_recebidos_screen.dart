@@ -200,9 +200,9 @@ List<ListTile> lista_tab_1 = [
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(5),
                 child: Container(
-                  width: alturaGlobalTela * 0.04,
-                  height: alturaGlobalTela * 0.04,
-                  color: Colors.blue,
+                  width: alturaGlobalTela * 0.035,
+                  height: alturaGlobalTela * 0.035,
+                  color: Colors.lightGreenAccent[400],
                   child: Center(
                     child: Text(
                       "2",
@@ -253,9 +253,9 @@ List<ListTile> lista_tab_1 = [
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(5),
                 child: Container(
-                  width: alturaGlobalTela * 0.04,
-                  height: alturaGlobalTela * 0.04,
-                  color: Colors.blue,
+                  width: alturaGlobalTela * 0.035,
+                  height: alturaGlobalTela * 0.035,
+                  color: Colors.lightGreenAccent[400],
                   child: Center(
                     child: Text(
                       "2",
@@ -306,9 +306,9 @@ List<ListTile> lista_tab_1 = [
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(5),
                 child: Container(
-                  width: alturaGlobalTela * 0.04,
-                  height: alturaGlobalTela * 0.04,
-                  color: Colors.blue,
+                  width: alturaGlobalTela * 0.035,
+                  height: alturaGlobalTela * 0.035,
+                  color: Colors.lightGreenAccent[400],
                   child: Center(
                     child: Text(
                       "2",
@@ -359,9 +359,9 @@ List<ListTile> lista_tab_1 = [
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(5),
                 child: Container(
-                  width: alturaGlobalTela * 0.04,
-                  height: alturaGlobalTela * 0.04,
-                  color: Colors.blue,
+                  width: alturaGlobalTela * 0.035,
+                  height: alturaGlobalTela * 0.035,
+                  color: Colors.lightGreenAccent[400],
                   child: Center(
                     child: Text(
                       "2",
@@ -412,9 +412,9 @@ List<ListTile> lista_tab_1 = [
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(5),
                 child: Container(
-                  width: alturaGlobalTela * 0.04,
-                  height: alturaGlobalTela * 0.04,
-                  color: Colors.blue,
+                  width: alturaGlobalTela * 0.035,
+                  height: alturaGlobalTela * 0.035,
+                  color: Colors.lightGreenAccent[400],
                   child: Center(
                     child: Text(
                       "2",
